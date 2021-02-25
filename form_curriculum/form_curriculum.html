@@ -1,149 +1,93 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="form_curriculum.css">
-    <link rel="preconnect" href="https://fonts.gstatic.com">
-    <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
-    <script src="https://kit.fontawesome.com/e9e88d601f.js" crossorigin="anonymous"></script>
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="form_curriculum.css" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto&display=swap"
+      rel="stylesheet"
+    />
+    <script
+      src="https://kit.fontawesome.com/e9e88d601f.js"
+      crossorigin="anonymous"
+    ></script>
     <title>Curriculum</title>
-</head>
-
-<body class="body">
+  </head>
+  <body class="body">
     <div class="container">
-        <div class="personal-info">
-            <div class="img-container">
-                <div id="img-user" class="circle-img" src="../Assets/Logo_Hackademy.png">
-
-                    <img src="../Assets/icon_add_image.png" class="add-img">
-
-                </div>
-                <input type="text" id="name-user" placeholder="Nombre..">
-                </input>
-                <p></p>
-                <input type="text" id="profesion" placeholder="Profesion..">
-            </div>
-            <div class="description-txt">
-                <p class="p-a">Contacto:</p>
-                <i class="far fa-envelope i"> <input class="input-a" id="email-user" placeholder="Email.."></i> </input>
-                <i class="fas fa-phone i"> <input class="input-a" id="phone-user" placeholder="Telefono.."> </i></input>
-                <i class="fas fa-map-marked-alt i"> <input class="input-a" id="dress-user" placeholder="Adress..">
-                </i></input>
-                <div class="line-a"></div>
-            </div>
-            <p class="p-a">Software:</p>
-            <select class="picker-aptitudes">
-                <option selected value="0"> Add Software </option>
-            </select>
-            <div id="add-software">
-                <input class="input-a new-soft" id="email-user" placeholder="Software.."> </input>
-                <div class="lvl-domain">
-                    <p class="p-a">Nivel de dominio:</p>
-                    <input type="range" name="rango" min="1" max="5" list="lista-rango">
-                </div>
-                <a id="btn-add-software" class="boton-add"> Añadir </a>
-            </div>
-            <div class="line-a"></div>
-            <p class="p-a">Skills:</p>
-            <select class="picker-aptitudes">
-                <option selected value="0"> Add skills </option>
-            </select>
-            <div id="div-skills">
-                <input class="input-a new-soft" id="add-skill" placeholder="Skill.."> </input>
-
-                <a id="btn-save" class="boton-add"> Añadir </a>
-            </div>
-            <a id="btn-add-skill" class="boton-guardar"> Guardar cambios </a>
+      <div class="sidebar">
+        <div class="img-container">
+          <div id="img-user" class="circle-img">
+            <img src="../Assets/icon_add_image.png" class="add-img" />
+          </div>
+          <label for="name-user">nombre</label>
+          <input type="text" id="name-user" placeholder="Nombre.." />
+          <label for="profesion">profesión</label>
+          <input type="text" id="profesion" placeholder="Profesion.." />
         </div>
-
-        <div class="experience-info">
-            <div class="works-info">
-                <h2>Experiencia:</h1>
-                    <div>
-                        <h4>
-                            Desarrollador web (2010-2019)
-                        </h4>
-                        <p>Ubuntu Inc.</p>
-                        <ul class="ul-b">
-                            <li> Ejemplo 1 </li>
-                            <li> Ejemplo 2</li>
-                            <li> Ejemplo 3 alv</li>
-                            <li> Ejemplo 4</li>
-                            <li> Ejemplo 5 alv</li>
-                            </li>
-                        </ul>
-                        <h4>
-                            Desarrollador web (2010-2019)
-                        </h4>
-                        <p>Facebook Inc.</p>
-                        <ul class="ul-b">
-                            <li> Ejemplo 1 </li>
-                            <li> Ejemplo 2</li>
-                            <li> Ejemplo 3 alv</li>
-                            <li> Ejemplo 4</li>
-                            <li> Ejemplo 5 alv</li>
-                            </li>
-                        </ul>
-
-                    </div>
-
-            </div>
-            <div class="line-b"></div>
-            <div class="schoolar-info">
-                <h2>Desarrollo Academico:</h1>
-                    <div>
-                        <h4>
-                            Desarrollador web (2010-2019)
-                        </h4>
-                        <p>Ubuntu Inc.</p>
-                        <ul class="ul-b">
-                            <li> Ejemplo 1 </li>
-                            <li> Ejemplo 2</li>
-                            <li> Ejemplo 3 alv</li>
-                            <li> Ejemplo 4</li>
-                            <li> Ejemplo 5 alv</li>
-                            </li>
-                        </ul>
-                        <h4>
-                            Desarrollador web (2010-2019)
-                        </h4>
-                        <p>Facebook Inc.</p>
-                        <ul class="ul-b">
-                            <li> Ejemplo 1 </li>
-                            <li> Ejemplo 2</li>
-                            <li> Ejemplo 3 alv</li>
-                            <li> Ejemplo 4</li>
-                            <li> Ejemplo 5 alv</li>
-                            </li>
-                        </ul>
-
-                        <h4>
-                            Desarrollador web (2010-2019)
-                        </h4>
-                        <p>Facebook Inc.</p>
-                        <ul class="ul-b">
-                            <li> Ejemplo 1 </li>
-                            <li> Ejemplo 2</li>
-                            <li> Ejemplo 3 alv</li>
-                            <li> Ejemplo 4</li>
-                            <li> Ejemplo 5 alv</li>
-                            </li>
-                        </ul>
-                    </div>
-
-            </div>
+        <div class="description-txt">
+          <span class="p-a">Contacto:</span>
+          <div class="renglon">
+            <i class="far fa-envelope i"></i>
+            <input class="input-a" id="email-user" placeholder="Email.." />
+          </div>
+          <div class="renglon">
+            <i class="fas fa-phone i"> </i>
+            <input class="input-a" id="phone-user" placeholder="Telefono.." />
+          </div>
+          <div class="renglon">
+            <i class="fas fa-map-marked-alt i"></i>
+            <input class="input-a" id="dress-user" placeholder="Adress.." />
+          </div>
+          <div class="line-a"></div>
         </div>
-<<<<<<< HEAD
+        <span class="p-a">Software:</span>
+        <select class="picker-aptitudes">
+          <option selected value="0">Add Software</option>
+        </select>
+        <div id="add-software">
+          <input
+            class="input-a new-soft"
+            id="email-user"
+            placeholder="Software.."
+          />
+          <div class="lvl-domain">
+            <p class="p-a">Nivel de dominio:</p>
+            <input
+              type="range"
+              name="rango"
+              min="1"
+              max="5"
+              list="lista-rango"
+            />
+          </div>
+          <button id="btn-add-software" class="boton-add">Añadir</button>
+        </div>
+        <div class="line-a"></div>
 
-=======
->>>>>>> bd181dc50217c04ce4c0101191fb939494603cb5
+        <span class="p-a">Skills:</span>
+        <select class="picker-aptitudes">
+          <option selected value="0">Add skills</option>
+        </select>
+        <div id="div-skills">
+          <input
+            class="input-a new-soft"
+            id="add-skill"
+            placeholder="Skill.."
+          />
+
+          <button id="btn-save" class="boton-add">Añadir</button>
+        </div>
+        <button id="btn-add-skill" class="boton-guardar">
+          Guardar cambios
+        </button>
+      </div>
+      <div class="content"></div>
     </div>
-</body>
+  </body>
 
-
-<script src="form_curriculum.js"></script>
-
+  <script src="form_curriculum.js"></script>
 </html>
