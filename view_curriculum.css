@@ -1,0 +1,146 @@
+.container{
+ background-color: whitesmoke;
+  display: flex;
+  justify-content: center;
+  margin-left: 18%;
+  margin-right: 18%;
+  height: auto;
+  display: flex;
+  flex-direction: row;
+}
+
+.body{
+background-color: #858585;
+height:100%;
+  margin:0;
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+  font-family: 'Roboto';
+
+}
+
+.personal-info{
+    background: #282828;
+    width: 40%;
+    height: auto;
+}
+.subtitle{
+  font-family: sans-serif;
+  color: #ffff;
+}
+
+.img-container{
+  height: 25%;   
+  margin-left: 5%;
+  margin-right: 5%;
+  align-content: center;
+  text-align: center;
+}
+.circle-img{
+        width: 140px; 
+        height: 140px;
+        margin-top: 13%; 
+        border: 3px solid rgb(77, 77, 77); 
+        background-color: rgb(255, 255, 255);
+        border-radius:150px;
+      }
+.h1-a{
+font-family: sans-serif;    
+color: #ffff;
+text-transform: uppercase;
+letter-spacing: 5px;
+}
+
+
+
+.p-a{
+  color: white;
+  font-size: 15px;
+  margin-left: 5%;
+}
+
+
+.description-txt{
+ 
+  height: 25%;
+  margin-left: 10px;
+  display: flex;
+  flex-direction: column;
+}
+
+.line-a{
+height: 1px;
+background-color: rgb(255, 255, 255);
+width: 90%;
+margin: auto;
+}
+
+.li-a{
+  list-style: none;
+  color: #ffff;
+  text-align: left;
+  margin-right: 10px;
+}
+.li-a ul{
+  display: flex;
+  align-items: center;
+
+}
+
+.li-a p{
+  padding-left: 5px;
+  margin: 0px;
+}
+
+
+.experience-info{
+  height: 100%;
+  width: 65%;
+  padding-left: 10%;
+}
+.works-info{
+  margin-top: 10%;
+}
+
+.h1-b{
+  font-family: sans-serif;    
+  color: #000;
+  text-transform: uppercase;
+  letter-spacing: 5px
+  }
+
+  .ul-b{
+    color:black;
+    text-align: left;
+    margin-right: 10px;
+  }
+
+  .line-b{
+    height: 2px;
+    background-color: black;
+    width: 90%;
+    }
+@media(max-width:540px){
+.container{
+  flex-direction: column;
+  margin: 0;
+}
+.personal-info{
+  width: 100%;
+}
+}
+@media(max-width:714px){
+  .container{
+    margin-left: 0;
+    margin-right: 0;
+  }
+}
+
+@media(max-width:980px){
+  .container{
+    margin-left: 0;
+    margin-right: 0;
+  }
+  
+}
