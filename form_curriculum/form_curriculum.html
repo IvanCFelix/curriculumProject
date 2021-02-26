@@ -1,93 +1,159 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="form_curriculum.css" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Roboto&display=swap"
-      rel="stylesheet"
-    />
-    <script
-      src="https://kit.fontawesome.com/e9e88d601f.js"
-      crossorigin="anonymous"
-    ></script>
-    <title>Curriculum</title>
-  </head>
-  <body class="body">
-    <div class="container">
-      <div class="sidebar">
-        <div class="img-container">
-          <div id="img-user" class="circle-img">
-            <img src="../Assets/icon_add_image.png" class="add-img" />
-          </div>
-          <label for="name-user">nombre</label>
-          <input type="text" id="name-user" placeholder="Nombre.." />
-          <label for="profesion">profesión</label>
-          <input type="text" id="profesion" placeholder="Profesion.." />
+
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="form_curriculum.css" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet" />
+  <script src="https://kit.fontawesome.com/e9e88d601f.js" crossorigin="anonymous"></script>
+  <title>Curriculum</title>
+</head>
+
+<body class="body">
+  <div class="container">
+    <div class="sidebar">
+      <div class="img-container">
+        <div class="circle-img">
+          <label for="pick-img-user" class="img-picker"></label>
+          <input id="pick-img-user" type="file" style="display: none;" />
+          <img id="img-user" src="../Assets/icon_add_image.png" class="add-img" />
         </div>
-        <div class="description-txt">
-          <span class="p-a">Contacto:</span>
-          <div class="renglon">
-            <i class="far fa-envelope i"></i>
-            <input class="input-a" id="email-user" placeholder="Email.." />
-          </div>
-          <div class="renglon">
-            <i class="fas fa-phone i"> </i>
-            <input class="input-a" id="phone-user" placeholder="Telefono.." />
-          </div>
-          <div class="renglon">
-            <i class="fas fa-map-marked-alt i"></i>
-            <input class="input-a" id="dress-user" placeholder="Adress.." />
-          </div>
-          <div class="line-a"></div>
+        <label for="name-user">nombre</label>
+        <input type="text" id="name-user" placeholder="Nombre.." />
+        <label for="profesion">profesión</label>
+        <input type="text" id="profesion" placeholder="Profesion.." />
+        <label for="description-user">Describete</label>
+        <textarea class="textarea" name="description-user" cols="40" rows="5">
+
+        </textarea>
+      </div>
+      <div class="description-txt">
+        <span class="p-a">Contacto:</span>
+        <div class="renglon">
+          <i class="far fa-envelope i"></i>
+          <input class="input-a" id="email-user" placeholder="Email.." />
         </div>
-        <span class="p-a">Software:</span>
-        <select class="picker-aptitudes">
-          <option selected value="0">Add Software</option>
-        </select>
-        <div id="add-software">
-          <input
-            class="input-a new-soft"
-            id="email-user"
-            placeholder="Software.."
-          />
-          <div class="lvl-domain">
-            <p class="p-a">Nivel de dominio:</p>
-            <input
-              type="range"
-              name="rango"
-              min="1"
-              max="5"
-              list="lista-rango"
-            />
-          </div>
-          <button id="btn-add-software" class="boton-add">Añadir</button>
+        <div class="renglon">
+          <i class="fas fa-phone i"> </i>
+          <input class="input-a" id="phone-user" placeholder="Telefono.." />
+        </div>
+        <div class="renglon">
+          <i class="fas fa-map-marked-alt i"></i>
+          <input class="input-a" id="dress-user" placeholder="Adress.." />
         </div>
         <div class="line-a"></div>
-
-        <span class="p-a">Skills:</span>
-        <select class="picker-aptitudes">
-          <option selected value="0">Add skills</option>
-        </select>
-        <div id="div-skills">
-          <input
-            class="input-a new-soft"
-            id="add-skill"
-            placeholder="Skill.."
-          />
-
-          <button id="btn-save" class="boton-add">Añadir</button>
-        </div>
-        <button id="btn-add-skill" class="boton-guardar">
-          Guardar cambios
-        </button>
       </div>
-      <div class="content"></div>
-    </div>
-  </body>
+      <span class="p-a">Software:</span>
+      <select class="picker-aptitudes">
+        <option selected value="0">Add Software</option>
+      </select>
+      <div id="add-software">
+        <input class="input-a new-soft" id="new-soft" placeholder="Software.." />
+        <div class="lvl-domain">
+          <p class="p-a">Nivel de dominio:</p>
+          <input type="range" name="rango" min="1" max="5" list="lista-rango" />
+        </div>
+        <button id="btn-add-software" class="boton-add">Añadir</button>
+      </div>
+      <div class="line-a"></div>
 
-  <script src="form_curriculum.js"></script>
+      <span class="p-a">Skills:</span>
+      <select class="picker-aptitudes">
+        <option selected value="0">Add skills</option>
+      </select>
+      <div id="div-skills">
+        <input class="input-a new-soft" id="add-skill" placeholder="Skill.." />
+
+        <button id="btn-save" class="boton-add">Añadir</button>
+      </div>
+      <button id="btn-add-skill" class="boton-guardar" onclick="guardar_datos()">
+        Guardar cambios
+      </button>
+    </div>
+    <div class="content">
+      <h2>Experiencia:</h1>
+        <div>
+          <h4>
+            Desarrollador web (2010-2019)
+          </h4>
+          <p>Ubuntu Inc.</p>
+          <ul class="ul-b">
+            <li> Ejemplo 1 </li>
+            <li> Ejemplo 2</li>
+            <li> Ejemplo 3 alv</li>
+            <li> Ejemplo 4</li>
+            <li> Ejemplo 5 alv</li>
+            </li>
+          </ul>
+          <h4>
+            Desarrollador web (2010-2019)
+          </h4>
+          <p>Facebook Inc.</p>
+          <ul class="ul-b">
+            <li> Ejemplo 1 </li>
+            <li> Ejemplo 2</li>
+            <li> Ejemplo 3 alv</li>
+            <li> Ejemplo 4</li>
+            <li> Ejemplo 5 alv</li>
+            </li>
+          </ul>
+
+        </div>
+
+
+        <div class="line-b"></div>
+        <div class="schoolar-info">
+          <h2>Desarrollo Academico:</h1>
+            <div>
+              <h4>
+                Desarrollador web (2010-2019)
+              </h4>
+              <p>Ubuntu Inc.</p>
+              <ul class="ul-b">
+                <li> Ejemplo 1 </li>
+                <li> Ejemplo 2</li>
+                <li> Ejemplo 3 alv</li>
+                <li> Ejemplo 4</li>
+                <li> Ejemplo 5 alv</li>
+                </li>
+              </ul>
+              <h4>
+                Desarrollador web (2010-2019)
+              </h4>
+              <p>Facebook Inc.</p>
+              <ul class="ul-b">
+                <li> Ejemplo 1 </li>
+                <li> Ejemplo 2</li>
+                <li> Ejemplo 3 alv</li>
+                <li> Ejemplo 4</li>
+                <li> Ejemplo 5 alv</li>
+                </li>
+              </ul>
+
+              <h4>
+                Desarrollador web (2010-2019)
+              </h4>
+              <p>Facebook Inc.</p>
+              <ul class="ul-b">
+                <li> Ejemplo 1 </li>
+                <li> Ejemplo 2</li>
+                <li> Ejemplo 3 alv</li>
+                <li> Ejemplo 4</li>
+                <li> Ejemplo 5 alv</li>
+                </li>
+              </ul>
+            </div>
+
+        </div>
+    </div>
+  </div>
+  </div>
+</body>
+
+
+<script src="form_curriculum.js"></script>
+
 </html>

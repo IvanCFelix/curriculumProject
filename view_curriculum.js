@@ -13,7 +13,7 @@ document.getElementById("profesion").innerText = obj_User.profesion;
 document.getElementById("email-user").innerText = obj_User.email;
 document.getElementById("phone-user").innerText = obj_User.tel;
 document.getElementById("dress-user").innerText = obj_User.direccion;
-document.getElementById().innerText = obj_User
+
 
 
 

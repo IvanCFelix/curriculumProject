@@ -1,7 +1,7 @@
 .container {
   display: grid;
   min-height: 100vh;
-  width: 90vw;
+  width: 60vw;
   margin: auto;
   grid-template-areas: "sidebar  cont";
   grid-template-columns: 1fr 2fr;
@@ -16,6 +16,8 @@
 .content {
   grid-area: cont;
   background-color: #f4f4f4;
+  padding: 60px 0px;
+  padding-left: 70px;
 }
 
 .body {
@@ -24,7 +26,9 @@
   box-sizing: border-box;
   font-family: "Roboto";
 }
-
+.sidebar textarea {
+  resize: none;
+}
 .subtitle {
   font-family: sans-serif;
   color: #ffff;
@@ -72,6 +76,13 @@
 .sidebar label {
   color: #c2c2c2;
   font-weight: bold;
+}
+
+.img-picker{
+  padding: 75px 75px;
+  position: absolute;
+  bottom: -5px;
+  right: -5px;
 }
 
 .i {
