@@ -12,7 +12,7 @@
   <title>Curriculum</title>
 </head>
 
-<body class="body">
+<body class="body" onload="cargar_selects()">
   <div class="container">
     <div class="sidebar">
       <div class="img-container">
@@ -27,7 +27,6 @@
         <input type="text" id="profesion" placeholder="Profesion.." />
         <label for="description-user">Describete</label>
         <textarea class="textarea" name="description-user" cols="40" rows="5">
-
         </textarea>
       </div>
       <div class="description-txt">
@@ -47,8 +46,7 @@
         <div class="line-a"></div>
       </div>
       <span class="p-a">Software:</span>
-      <select class="picker-aptitudes">
-        <option selected value="0">Add Software</option>
+      <select class="picker-aptitudes" id="select_software">
       </select>
       <div id="add-software">
         <input class="input-a new-soft" id="new-soft" placeholder="Software.." />
@@ -61,8 +59,8 @@
       <div class="line-a"></div>
 
       <span class="p-a">Skills:</span>
-      <select class="picker-aptitudes">
-        <option selected value="0">Add skills</option>
+      <select class="picker-aptitudes" id="select_skills">
+        
       </select>
       <div id="div-skills">
         <input class="input-a new-soft" id="add-skill" placeholder="Skill.." />
@@ -76,31 +74,21 @@
     <div class="content">
       <h2>Experiencia:</h1>
         <div>
-          <h4>
-            Desarrollador web (2010-2019)
-          </h4>
-          <p>Ubuntu Inc.</p>
-          <ul class="ul-b">
-            <li> Ejemplo 1 </li>
-            <li> Ejemplo 2</li>
-            <li> Ejemplo 3 alv</li>
-            <li> Ejemplo 4</li>
-            <li> Ejemplo 5 alv</li>
-            </li>
-          </ul>
-          <h4>
-            Desarrollador web (2010-2019)
-          </h4>
-          <p>Facebook Inc.</p>
-          <ul class="ul-b">
-            <li> Ejemplo 1 </li>
-            <li> Ejemplo 2</li>
-            <li> Ejemplo 3 alv</li>
-            <li> Ejemplo 4</li>
-            <li> Ejemplo 5 alv</li>
-            </li>
-          </ul>
-
+            <select class="picker-aptitudes" id="select_works">
+            </select>
+            <div class="add-work">
+              <label for="new-work">Nombre de la Empresa</label>
+              <input class="input-a" id="new-work" placeholder="Work.." />
+              <label for="date-start-work">Fecha de Inicio</label>
+              <input  type="date" class="input-a" id="date-start-work" placeholder="Work.." />
+              <label for="date-end-work ">Fecha de termino</label>
+              <input type="date" class="input-a" id="date-end-work" placeholder="Work.." />
+              <label for="description-work">Descripcion del trabajo</label>
+              <textarea class="textarea" name="description-work" cols="70" rows="5"></textarea>
+              <button id="btn-add-work" class="boton-add">Añadir</button>
+              <button id="btn-del-work" class="boton-eliminar">Eliminar</button>
+            </div>
+        
         </div>
 
 
@@ -108,44 +96,20 @@
         <div class="schoolar-info">
           <h2>Desarrollo Academico:</h1>
             <div>
-              <h4>
-                Desarrollador web (2010-2019)
-              </h4>
-              <p>Ubuntu Inc.</p>
-              <ul class="ul-b">
-                <li> Ejemplo 1 </li>
-                <li> Ejemplo 2</li>
-                <li> Ejemplo 3 alv</li>
-                <li> Ejemplo 4</li>
-                <li> Ejemplo 5 alv</li>
-                </li>
-              </ul>
-              <h4>
-                Desarrollador web (2010-2019)
-              </h4>
-              <p>Facebook Inc.</p>
-              <ul class="ul-b">
-                <li> Ejemplo 1 </li>
-                <li> Ejemplo 2</li>
-                <li> Ejemplo 3 alv</li>
-                <li> Ejemplo 4</li>
-                <li> Ejemplo 5 alv</li>
-                </li>
-              </ul>
-
-              <h4>
-                Desarrollador web (2010-2019)
-              </h4>
-              <p>Facebook Inc.</p>
-              <ul class="ul-b">
-                <li> Ejemplo 1 </li>
-                <li> Ejemplo 2</li>
-                <li> Ejemplo 3 alv</li>
-                <li> Ejemplo 4</li>
-                <li> Ejemplo 5 alv</li>
-                </li>
-              </ul>
-            </div>
+              <select class="picker-aptitudes" id="select_school">
+              </select>
+              <div class="add-school">
+                <label for="new-school">Nombre de la Escuela</label>
+                <input class="input-a" id="new-school" placeholder="School name.." />
+                <label for="new-work">Fecha de Inicio</label>
+                <input  type="date" class="input-a" id="date-start-school"  />
+                <label for="new-work">Fecha que termino</label>
+                <input type="date" class="input-a" id="dat-end-school"  />
+                <label for="description-work">Reconocimiento obtenido:</label>
+                <input  type="text" class="input-a" id="description-school"  />
+              </div>
+              <button id="btn-add-work" class="boton-add">Añadir</button>
+              <button id="btn-del-school" class="boton-del">Eliminar</button>
 
         </div>
     </div>
