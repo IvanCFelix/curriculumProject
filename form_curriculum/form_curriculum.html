@@ -25,9 +25,10 @@
         <input type="text" id="name-user" placeholder="Nombre.." />
         <label for="profesion">profesión</label>
         <input type="text" id="profesion" placeholder="Profesion.." />
+        <label for="birth-date">Birth</label>
+        <input type="date" id="birth-date "/>
         <label for="description-user">Describete</label>
-        <textarea class="textarea" name="description-user" cols="40" rows="5">
-        </textarea>
+        <textarea class="textarea" name="description-user" cols="40" rows="5"></textarea>
       </div>
       <div class="description-txt">
         <span class="p-a">Contacto:</span>
@@ -45,29 +46,21 @@
         </div>
         <div class="line-a"></div>
       </div>
-      <span class="p-a">Software:</span>
-      <select class="picker-aptitudes" id="select_software">
-      </select>
-      <div id="add-software">
-        <input class="input-a new-soft" id="new-soft" placeholder="Software.." />
-        <div class="lvl-domain">
-          <p class="p-a">Nivel de dominio:</p>
-          <input type="range" name="rango" min="1" max="5" list="lista-rango" />
-        </div>
-        <button id="btn-add-software" class="boton-add">Añadir</button>
-      </div>
-      <div class="line-a"></div>
 
-      <span class="p-a">Skills:</span>
-      <select class="picker-aptitudes" id="select_skills">
-        
-      </select>
-      <div id="div-skills">
-        <input class="input-a new-soft" id="add-skill" placeholder="Skill.." />
-
-        <button id="btn-save" class="boton-add">Añadir</button>
+      <div class="renglon">
+        <i class="fab fa-linkedin i"></i>
+        <input class="input-a" id="linked-user" placeholder="Linkedin.." />
+      </div><div class="renglon">
+        <i class="fab fa-github-square i"></i>
+        <input class="input-a" id="git-user" placeholder="GitHub.." />
+      </div><div class="renglon">
+        <i class="fab fa-twitter-square i"></i>       
+        <input class="input-a" id="twitter-user" placeholder="Twitter.." />
+      </div><div class="renglon">
+        <i class="fab fa-facebook-square i"></i>
+        <input class="input-a" id="fb-user" placeholder="Facebook.." />
       </div>
-      <button id="btn-add-skill" class="boton-guardar" onclick="guardar_datos()">
+      <button id="btn-add-skill" class="boton-guardar" onclick="update_data()">
         Guardar cambios
       </button>
     </div>
@@ -112,6 +105,47 @@
   
               </div>
              
+        </div>
+        <div class="line-b"></div>
+
+        <h2 class="p-b">Software:</h2>
+        <select class="picker-aptitudes" id="select_software" onchange="select_soft();">
+        </select>
+        <div id="add-software" class="add-software">
+          <input class="input-a new-soft" id="input-new-soft" placeholder="Software.." />
+          <div class="lvl-domain">
+            <p class="p-b">Nivel de dominio:</p>
+            <input type="range" id="range-soft" name="rango" min="1" max="5" list="lista-rango" />
+            <datalist id="lista-rango">
+                <option value="1" label="1">
+                <option value="2" label="2">
+                <option value="3" label="3">
+                <option value="4" label="4">
+                <option value="5" label="5">
+              
+            </datalist>
+          </div>
+          <button id="btn-add-software" class="boton-add">Añadir</button>
+        </div>
+        <div class="line-b"></div>
+
+        <h2 class="p-b">Skills:</h2>
+        <select class="picker-aptitudes" id="select_skills" onchange="select_skill();">
+        </select>
+        <div id="div-skills" class="add-skill">
+          <input class="input-a new-soft" id="add-skill" placeholder="Skill.." />
+          <div class="lvl-domain">
+            <p class="p-b">Nivel de dominio:</p>
+            <input type="range" id="range-soft" name="rango" min="1" max="5" list="lista-rango" />
+            <datalist id="lista-rango">
+                <option value="1" label="1">
+                <option value="2" label="2">
+                <option value="3" label="3">
+                <option value="4" label="4">
+                <option value="5" label="5">
+            
+            </datalist>
+          <button id="btn-add-skill" class="boton-add" onclick="add-skill()">Añadir</button>
         </div>
     </div>
   </div>

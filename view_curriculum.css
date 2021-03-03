@@ -3,7 +3,7 @@
   min-height: 100vh;
   width: 80vw;
   margin: auto;
-  background-color: #07001a;
+  background-color: #1d1d1d;
   grid-template-areas: "experience cont education";
   grid-template-columns: 1fr 1fr 1fr;
 }
@@ -22,13 +22,14 @@
   margin-top: 180px;
   align-items: center;
   text-align: center;
-  background-color: #1833b9b7;
+  background-color: rgb(34, 40, 56);
 }
 
 .education {
   grid-area: education;
   padding: 300px 10px;
-  text-align: center;
+  text-align: left;
+  color: #ffffff;
 }
 
 .h2-a{
@@ -47,11 +48,11 @@
     text-align: center;
   }
 
-  .experience h4{
+  .body h4{
     font-family: sans-serif;    
-  color: rgb(49, 79, 214);
+  color: rgb(115, 145, 236);
   text-transform: uppercase;
-  margin: 10px
+  margin: 10px 0px;
   }
 
   .experience p{
@@ -67,6 +68,8 @@
   .date{
     color: #858585 !important;
   }
+
+  
 .body {
   background-color: #858585;
   margin: 0;
