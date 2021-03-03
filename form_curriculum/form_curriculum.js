@@ -1,3 +1,5 @@
+const option = document.createElement("option");
+const select_skills = document.getElementById("select_skills");
 
 let obj_User = {
     name: "",
@@ -7,26 +9,26 @@ let obj_User = {
     email: "",
     phone: "",
     dress: "",
-    birthDate:"",
-    works: [{
-        name: "",
-        description: "",
-        job: "",
-    }],
-    skills: [{
-        name: "",
-        domain: ""
-    }],
-    softwares: [{
-        name: "Photoshop",
-        domain: ""
-    }],
-    schools: [{
-        name: "",
-        description: "",
-        title: "",
-    }]
+    birthDate: "",
+    facebook: "",
+    twitter: "",
+    linkedin: "",
+    github: ""
 }
+let arraySkills = [{
+    name: "Select Option"},{name:"Add Skill"}];
+
+let arraySoftwares = [{name:"Select Option"},{name:"Add Software"}];
+let schools = [{
+    name: "",
+    description: "",
+    title: "",
+}];
+let works = [{
+    name: "",
+    description: "",
+    job: "",
+}];
 
 
 function update_data() {
@@ -47,25 +49,23 @@ function cargar_selects() {
     cargar_schools();
 }
 function cargar_software() {
-    var software = ["Select option", "Add Software", "Photoshop"];
+    var software = arraySoftwares;
     var select = document.getElementById("select_software");
 
     for (var i = 0; i < software.length; i++) {
         var option = document.createElement("option");
-        option.innerHTML = software[i];
+        option.innerHTML = software[i].name;
         option.value = i;
         select.appendChild(option);
     }
 }
 function cargar_skills() {
-    var skill = ["Select option", "Add Skill"];
-    var select = document.getElementById("select_skills");
-
+    var skill = arraySkills;
     for (var i = 0; i < skill.length; i++) {
         var option = document.createElement("option");
-        option.innerHTML = skill[i];
+        option.innerHTML = skill[i].name;
         option.value = i;
-        select.appendChild(option);
+        select_skills.appendChild(option);
     }
 }
 function cargar_works() {
@@ -99,17 +99,17 @@ function select_soft() {
     else {
         document.getElementById('add-software').style.display = "block";
     }
-    if(software>1){
-        document.getElementById('btn-add-software').innerHTML ="Editar"
+    if (software > 1) {
+        document.getElementById('btn-add-software').innerHTML = "Editar"
         document.getElementById('input-new-soft').value = obj_User.softwares[0].name;
-    }else{
-        document.getElementById('btn-add-software').innerHTML ="Añadir"
+    } else {
+        document.getElementById('btn-add-software').innerHTML = "Añadir"
     }
 
 }
 
 function select_skill() {
-    let skill = document.getElementById("select_skill").value;
+    let skill = document.getElementById('select_skills').value;
     if (skill == 0) {
         document.getElementById('div-skills').style.display = "none";
     }
@@ -117,14 +117,29 @@ function select_skill() {
         document.getElementById('div-skills').style.display = "block";
 
     }
-    if(skill>1){
-        document.getElementById('btn-add-skill').innerHTML ="Editar"
+    if (skill > 1) {
+        document.getElementById('btn-add-skill').innerHTML = "Editar"
         document.getElementById('input-new-soft').value = obj_User.softwares[0].name;
-    }else{
-        document.getElementById('btn-add-skill').innerHTML ="Añadir"
+    } else {
+        document.getElementById('btn-add-skill').innerHTML = "Añadir"
     }
 }
 
+
+function add_skill() {
+    let name = document.getElementById('input-skill').value;
+    let domain = document.getElementById('range-skill').value;
+    let obj_skill = {
+        name: name,
+        domain: domain
+    }
+    arraySkills.push(obj_skill);
+    option.innerHTML = arraySkills[arraySkills.length-1].name;
+    option.value = arraySkills.length-1;
+    select_skills.appendChild(option);
+    document.getElementById('div-skills').style.display = "none";
+
+}
 
 
 

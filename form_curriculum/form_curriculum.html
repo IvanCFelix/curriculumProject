@@ -133,10 +133,10 @@
         <select class="picker-aptitudes" id="select_skills" onchange="select_skill();">
         </select>
         <div id="div-skills" class="add-skill">
-          <input class="input-a new-soft" id="add-skill" placeholder="Skill.." />
+          <input class="input-a new-soft" id="input-skill" placeholder="Skill.." />
           <div class="lvl-domain">
             <p class="p-b">Nivel de dominio:</p>
-            <input type="range" id="range-soft" name="rango" min="1" max="5" list="lista-rango" />
+            <input type="range" id="range-skill" name="rango" min="1" max="5" list="lista-rango" />
             <datalist id="lista-rango">
                 <option value="1" label="1">
                 <option value="2" label="2">
@@ -145,7 +145,7 @@
                 <option value="5" label="5">
             
             </datalist>
-          <button id="btn-add-skill" class="boton-add" onclick="add-skill()">Añadir</button>
+          <button id="btn-add-skill" class="boton-add" onclick="add_skill()">Añadir</button>
         </div>
     </div>
   </div>
