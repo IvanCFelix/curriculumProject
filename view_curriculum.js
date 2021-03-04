@@ -1,5 +1,5 @@
 let obj_User ={
-nombre: "ivanfelix",
+nombre: "ivan felix",
 imagen: null,
 profesion: "Backend panchon",
 email:"ejemplo2@hotmail.com",

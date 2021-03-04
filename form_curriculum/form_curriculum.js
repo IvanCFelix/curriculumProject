@@ -1,5 +1,6 @@
 const select_skills = document.getElementById("select_skills");
-
+const selector_schools = document.getElementById('selector_school');
+const selector_works = document.getElementById("selector_works")
 let obj_User = {
     name: "",
     img: null,
@@ -18,11 +19,7 @@ let arraySkills = [{name: "Select Option"},{name:"Add Skill"}];
 
 let arraySoftwares = [{name:"Select Option"},{name:"Add Software"}];
 let arraySchools = [{name:"Select School"},{name:"Add School"}];
-let arrayWorks = [{
-    name: "",
-    description: "",
-    job: "",
-}];
+let arrayWorks = [{name:"Select Option"},{name:"Add Work"}];
 
 
 function update_data() {
@@ -74,39 +71,55 @@ function cargar_skills() {
     }
 }
 function cargar_works() {
-    var work = ["Select option", "Add Work"];
-    var select = document.getElementById("select_works");
-
+    var work = arrayWorks;
     for (var i = 0; i < work.length; i++) {
         var option = document.createElement("option");
-        option.innerHTML = work[i];
+        option.innerHTML = work[i].name;
         option.value = i;
-        select.appendChild(option);
+        selector_works.appendChild(option);
     }
 }
 function cargar_schools() {
     var school = arraySchools;
-    var select = document.getElementById("select_school");
-
     for (var i = 0; i < school.length; i++) {
         var option = document.createElement("option");
         option.innerHTML = school[i].name;
         option.value = i;
-        select.appendChild(option);
+        selector_schools.appendChild(option);
     }
 }
 
+function select_work() {
+    let workPosition = selector_works.value;
+    if (workPosition == 0) {
+        document.getElementById('add_work').style.display = "none";
+    }
+    else {
+        document.getElementById('add_work').style.display = "block";
+    }
+
+    if (workPosition > 1) {
+        document.getElementById('btn-add-software').innerHTML = "Editar"
+        document.getElementById('input-new-soft').value = arrayWorks[workPosition].name;
+    } else {
+        document.getElementById('btn-add-software').innerHTML = "Añadir"
+        document.getElementById('input-new-soft').value = "";
+    }
+
+}
+
+
 function select_soft() {
-    let software = document.getElementById("select_software").value;
-    if (software == 0) {
+    let softwarePosition = document.getElementById("select_software").value;
+    if (softwarePosition == 0) {
         document.getElementById('add-software').style.display = "none";
     }
     else {
         document.getElementById('add-software').style.display = "block";
     }
-    if (software > 1) {
+    if (softwarePosition > 1) {
         document.getElementById('btn-add-software').innerHTML = "Editar"
-        document.getElementById('input-new-soft').value = obj_User.softwares[0].name;
+        document.getElementById('input-new-soft').value = arraySoftwares[softwarePosition].name;
     } else {
         document.getElementById('btn-add-software').innerHTML = "Añadir"
         document.getElementById('input-new-soft').value = "";
@@ -133,21 +146,20 @@ function select_skill() {
     }
 }
 
-
 function select_school() {
-    let school = document.getElementById('select_school').value;
-    if (school == 0) {
+    let schoolPosition = selector_schools.value;
+    if (schoolPosition == 0) {
         document.getElementById('add_school').style.display = "none";
     }
     else {
         document.getElementById('add_school').style.display = "block";
 
     }
-    if (school > 1) {
+    if (schoolPosition > 1) {
         document.getElementById('btn-add-school').innerHTML = "Editar"
-        document.getElementById('input-new-schol').value = arraySchools.name;
-        document.getElementById('school_description').value = arraySchools.description;
-        document.getElementById('input-new-schol').value = arraySchools.tittle;
+        document.getElementById('input-new-school').value = arraySchools[schoolPosition].name;
+        document.getElementById('school_description').value = arraySchools[schoolPosition].description;
+        document.getElementById('input-new-schol').value = arraySchools[schoolPosition].tittle;
 
     } else {
         document.getElementById('btn-add-school').innerHTML = "Añadir"
@@ -169,10 +181,9 @@ function add_skill() {
     newOption.value = arraySkills.length-1;
     console.log(arraySkills);   
     select_skills.appendChild(newOption);
-    
     document.getElementById('div-skills').style.display = "none";
+    alert("El dato se agrego correctamente");
 }
-
 
 function add_soft() {
     let name = document.getElementById('input-new-soft').value;
@@ -181,17 +192,17 @@ function add_soft() {
         name: name,
         domain: domain
     }
+    let newOption = document.createElement("option");
     arraySoftwares.push(obj_soft);
-    option.innerHTML = arraySoftwares[arraySoftwares.length-1].name;
-    option.value = arraySoftwares.length-1;
-    select_software.appendChild(option);
+    newOption.innerHTML = arraySoftwares[arraySoftwares.length-1].name;
+    newOption.value = arraySoftwares.length-1;
+    select_software.appendChild(newOption);
     document.getElementById('add-software').style.display = "none";
-    alert("El dato se agrego correctamente")
+    alert("El dato se agrego correctamente");
 }
 
-
-function add_school() {
-    let name = document.getElementById('input-new-soft').value;
+function add_school(){
+    let name = document.getElementById('input-new-school').value;
     let description = document.getElementById('school_description').value;
     let title = document.getElementById('title_school').value;
     let obj_school = {
@@ -200,11 +211,29 @@ function add_school() {
     title: title
     }
     arraySchools.push(obj_school);
-    option.innerHTML = arraySchools[arraySchools.length-1].name;
-    option.value = arraySchools.length-1;
-    select_school.appendChild(option);  
-    document.getElementById('add-software').style.display = "none";
-    alert("El dato se agrego correctamente")
+    let newOption = document.createElement("option");
+    newOption.innerHTML = arraySchools[arraySchools.length-1].name;
+    newOption.value = arraySchools.length-1;
+    selector_schools.appendChild(newOption);  
+    document.getElementById('add_school').style.display = "none";
+    console.log(arraySchools);
+    alert("El dato se agrego correctamente");
 }
 
+function add_work(){
+    let obj_school = {
+        name: document.getElementById('input-new-school').value,
+        description: document.getElementById('school_description').value,
+        job: document.getElementById('title_school').value,
+    }
+    arraySchools.push(obj_school);
+    let newOption = document.createElement("option");
+    newOption.innerHTML = arraySchools[arraySchools.length-1].name;
+    newOption.value = arraySchools.length-1;
+    selector_schools.appendChild(newOption);  
+
+    document.getElementById('add_school').style.display = "none";
+    console.log(arraySchools);
+    alert("El dato se agrego correctamente");
+}
 
