@@ -26,9 +26,9 @@
         <label for="profesion">profesión</label>
         <input type="text" id="profesion" placeholder="Profesion.." />
         <label for="birth-date">Birth</label>
-        <input type="date" id="birth-date "/>
+        <input type="date" id="birth-date"/>
         <label for="description-user">Describete</label>
-        <textarea class="textarea" name="description-user" cols="40" rows="5"></textarea>
+        <textarea class="textarea" id="description-user" cols="40" rows="5"></textarea>
       </div>
       <div class="description-txt">
         <span class="p-a">Contacto:</span>
@@ -60,7 +60,7 @@
         <i class="fab fa-facebook-square i"></i>
         <input class="input-a" id="fb-user" placeholder="Facebook.." />
       </div>
-      <button id="btn-add-skill" class="boton-guardar" onclick="update_data()">
+      <button class="boton-guardar" onclick="update_data()">
         Guardar cambios
       </button>
     </div>
@@ -89,20 +89,17 @@
         <div class="schoolar-info">
           <h2>Desarrollo Academico:</h1>
             <div>
-              <select class="picker-aptitudes" id="select_school">
+              <select class="picker-aptitudes" id="select_school" onchange="select_school();">
               </select>
-              <div class="add-school">
+              <div id="add_school" class="add-school">
                 <label for="new-school">Nombre de la Escuela</label>
                 <input class="input-a" id="new-school" placeholder="School name.." />
-                <label for="new-work">Fecha de Inicio</label>
-                <input  type="date" class="input-a" id="date-start-school"  />
-                <label for="new-work">Fecha que termino</label>
-                <input type="date" class="input-a" id="dat-end-school"  />
-                <label for="description-work">Reconocimiento obtenido:</label>
-                <input  type="text" class="input-a" id="description-school"  />
-                <button id="btn-add-work" class="boton-add">Añadir</button>
-                <button id="btn-del-school" class="boton-del">Eliminar</button>
-  
+                <label for="school_description">Description school</label>
+                <input  type="text" class="input-a" id="school_description" placeholder="Description"/>
+                <label for="tittle_school">Title obteined  :</label>
+                <input  type="text" class="input-a" id="tittle_school"  />
+                <button id="btn-add-school" class="boton-add" onclick="add_school();">Añadir</button>
+               
               </div>
              
         </div>
@@ -125,7 +122,7 @@
               
             </datalist>
           </div>
-          <button id="btn-add-software" class="boton-add">Añadir</button>
+          <button id="btn-add-software" class="boton-add" onclick="add_soft();">Añadir</button>
         </div>
         <div class="line-b"></div>
 
