@@ -16,6 +16,7 @@ const input_facebook = document.getElementById('fb-user');
 
 
 let obj_User = {
+    id: null,
     name: "",
     img: null,
     profesion: "",
@@ -29,45 +30,89 @@ let obj_User = {
     linkedin: "",
     github: ""
 }
-let arraySkills = [{name: "Select Option"},{name:"Add Skill"}];
+let arraySkills = [{ name: "Select Option" }, { name: "Add Skill" },{name:"photoshop",domain: 3 }];
 
-let arraySoftwares = [{name:"Select Option"},{name:"Add Software"}];
-let arraySchools = [{name:"Select School"},{name:"Add School"}];
-let arrayWorks = [{name:"Select Option"},{name:"Add Work"}];
+let arraySoftwares = [{ name: "Select Option" }, { name: "Add Software" }];
+let arraySchools = [{ name: "Select School" }, { name: "Add School" }];
+let arrayWorks = [{ name: "Select Option" }, { name: "Add Work" }];
 
-function update_data() {
-    obj_User.name = document.getElementById('name-user').value;
-    obj_User.profesion = document.getElementById('profesion').value;
-    obj_User.description = document.getElementById('description-user').value;
-    obj_User.email = document.getElementById('email-user').value;
-    obj_User.phone = document.getElementById('phone-user').value;
-    obj_User.dress = document.getElementById('dress-user').value;
-    obj_User.birthDate = document.getElementById('birth-date').value;
-    let newObj={
+async function update_data() {
+    obj_User.name = input_name.value;
+    obj_User.profesion = input_profesion.value;
+    obj_User.description = input_description.value;
+    obj_User.birthDate = input_birthDate.value
+    obj_User.email = input_email.value;
+    obj_User.phone = input_phone.value;
+    obj_User.dress= input_dress.value;
+    obj_User.linkedin = input_linked.value;
+    obj_User.github = input_git.value;
+    obj_User.twitter = input_twitter.value ;
+    obj_User.facebook = input_facebook.value;
+    let skills = arraySkills.splice(0,2).stringify;
+    let softwares = arraySoftwares.splice(0,2).stringify; 
+    let schools = arraySchools.splice(0,2).stringify;
+    let works = arrayWorks.splice(0,2).stringify;
+    let newObj = {
         ...obj_User,
-        arraySchools,
-        arraySkills,
-        arraySoftwares,
-        arrayWorks
+        arraySchools: schools,
+        arraySkill: skills,
+        arraySoft : softwares,
+        arrayWorks: works
     }
+
+    console.log(newObj);
+
+        if(newObj.id == null){
+            postData(newObj);
+            console.log("Se agrego un usuario");
+        }else{
+            editData(newObj);
+            console.log("Se edito un usuario");
+
+        }
 }
 
-function obtener_imagen(e){
+
+async function postData(obj) {
+    fetch('http://localhost:3000/api/users/', {
+        method: 'post',
+        headers: {
+          'Accept': 'application/json, text/plain, */*',
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(obj)
+      }).then(res => res.json())
+        .then(res => console.log(res));
+  }
+  
+  async function editData(obj) {
+    fetch('http://localhost:3000/api/users/'+obj_User.id, {
+        method: 'put',
+        headers: {
+          'Accept': 'application/json, text/plain, */*',
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(obj)
+      }).then(res => res.json())
+        .then(res => console.log(res));
+  }
+
+function obtener_imagen(e) {
     e.preventDefault();
     let reader = new FileReader();
     let img_container = document.getElementById('img_user');
-    reader.onload = function(e){
+    reader.onload = function (e) {
         let filePreview = e.target.result;
         img_container.src = filePreview;
-        obj_User.img=filePreview;
-    } 
+        obj_User.img = filePreview;
+    }
     reader.readAsDataURL(e.target.files[0]);
 
 }
 
 async function cargar_selects() {
-   await getUsers();
-   console.log(obj_User)
+    await getUsers();
+    console.log(obj_User)
     cargar_datos();
     cargar_software();
     cargar_works();
@@ -76,18 +121,20 @@ async function cargar_selects() {
 
 }
 
-function cargar_datos(){
-    input_name.value = obj_User.name;
-    input_profesion.value = obj_User.profesion;
-    input_description.value = obj_User.description;
-    input_birthDate.value = obj_User.birthDate; 
-    input_email.value = obj_User.email;
-    input_phone.value = obj_User.phone;
-    input_dress.value = obj_User.dress;
-    input_linked.value = obj_User.linkedin;
-    input_git.value = obj_User.github;
-    input_twitter = obj_User.twitter;
-    input_facebook = obj_User.facebook;
+function cargar_datos() {
+    if (obj_User.id != null) {
+        input_name.value = obj_User.name;
+        input_profesion.value = obj_User.profesion;
+        input_description.value = obj_User.description;
+        input_birthDate.value = obj_User.birthDate;
+        input_email.value = obj_User.email;
+        input_phone.value = obj_User.phone;
+        input_dress.value = obj_User.dress;
+        input_linked.value = obj_User.linkedin;
+        input_git.value = obj_User.github;
+        input_twitter.value = obj_User.twitter;
+        input_facebook.value = obj_User.facebook;
+    }
 }
 
 function cargar_software() {
@@ -217,9 +264,9 @@ function add_skill() {
     }
     let newOption = document.createElement("option");
     arraySkills.push(obj_skill);
-    newOption.innerHTML = arraySkills[arraySkills.length-1].name;
-    newOption.value = arraySkills.length-1;
-    console.log(arraySkills);   
+    newOption.innerHTML = arraySkills[arraySkills.length - 1].name;
+    newOption.value = arraySkills.length - 1;
+    console.log(arraySkills);
     select_skills.appendChild(newOption);
     document.getElementById('div-skills').style.display = "none";
     alert("El dato se agrego correctamente");
@@ -235,33 +282,33 @@ function add_soft() {
     }
     let newOption = document.createElement("option");
     arraySoftwares.push(obj_soft);
-    newOption.innerHTML = arraySoftwares[arraySoftwares.length-1].name;
-    newOption.value = arraySoftwares.length-1;
+    newOption.innerHTML = arraySoftwares[arraySoftwares.length - 1].name;
+    newOption.value = arraySoftwares.length - 1;
     select_software.appendChild(newOption);
     document.getElementById('add-software').style.display = "none";
     alert("El dato se agrego correctamente");
 }
 
-function add_school(){
+function add_school() {
     let name = document.getElementById('input-new-school').value;
     let description = document.getElementById('school_description').value;
     let title = document.getElementById('title_school').value;
     let obj_school = {
-    name: name,
-    description: description,
-    title: title
+        name: name,
+        description: description,
+        title: title
     }
     arraySchools.push(obj_school);
     let newOption = document.createElement("option");
-    newOption.innerHTML = arraySchools[arraySchools.length-1].name;
-    newOption.value = arraySchools.length-1;
-    selector_schools.appendChild(newOption);  
+    newOption.innerHTML = arraySchools[arraySchools.length - 1].name;
+    newOption.value = arraySchools.length - 1;
+    selector_schools.appendChild(newOption);
     document.getElementById('add_school').style.display = "none";
     console.log(arraySchools);
     alert("El dato se agrego correctamente");
 }
 
-function add_work(){
+function add_work() {
     let obj_work = {
         name: document.getElementById('new_work').value,
         description: document.getElementById('description_work').value,
@@ -269,9 +316,9 @@ function add_work(){
     }
     arrayWorks.push(obj_work);
     let newOption = document.createElement("option");
-    newOption.innerHTML = arrayWorks[arrayWorks.length-1].name;
-    newOption.value = arraySchools.length-1;
-    selector_works.appendChild(newOption);  
+    newOption.innerHTML = arrayWorks[arrayWorks.length - 1].name;
+    newOption.value = arraySchools.length - 1;
+    selector_works.appendChild(newOption);
 
     document.getElementById('add_work').style.display = "none";
     console.log(arrayWorks);
@@ -280,9 +327,11 @@ function add_work(){
 
 
 //Funciones para conectar con el server
-async function getUsers(){
-   const response = await fetch('http://localhost:3000/api/users/')
-   const data = await response.json();
-    obj_User = data[0];
+async function getUsers() {
+    const response = await fetch('http://localhost:3000/api/users/')
+    const data = await response.json();
+    if (data[0] != undefined) {
+        obj_User = data[0];
+    }
 }
 
