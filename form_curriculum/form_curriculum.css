@@ -91,9 +91,14 @@
   height: 140px;
   border: 3px solid rgb(77, 77, 77);
   border-radius: 140px;
-  background-image: url(../Assets/Logo_Hackademy.png);
   margin: auto;
   position: relative;
+}
+
+.img-user {
+  width: 140px;
+  height: 140px;
+  border-radius: 140px;
 }
 
 .circle-img:hover {

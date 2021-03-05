@@ -17,9 +17,10 @@
     <div class="sidebar">
       <div class="img-container">
         <div class="circle-img">
+          <img id="img_user" class="img-user" >
           <label for="pick-img-user" class="img-picker"></label>
-          <input id="pick-img-user" type="file" style="display: none;" />
-          <img id="img-user" src="../Assets/icon_add_image.png" class="add-img" />
+          <input id="pick-img-user" type="file" style="display: none;" onchange="obtener_imagen(event);"/>
+          <img  src="../Assets/icon_add_image.png" class="add-img" />
         </div>
         <label for="name-user">nombre</label>
         <input type="text" id="name-user" placeholder="Nombre.." />
@@ -66,19 +67,19 @@
     </div>
     <div class="content">
       <div class="schoolar-info">
-      <h2>Experiencia:</h1>
+      <h2>Experience:</h1>
         
             <select class="picker-aptitudes" id="selector_works" onchange="select_work();">
             </select>
             <div class="add-work" id="add_work">
-              <label for="new-work">Nombre de la Empresa</label>
-              <input class="input-a" id="new-work" placeholder="Work.." />
-              <label for="job_name">Fecha de Inicio</label>
+              <label for="new-work">Name </label>
+              <input class="input-a" id="new_work" placeholder="Work.." />
+              <label for="job_name">Job</label>
               <input  type="text" class="input-a" id="job_name" placeholder="Work.." />
-              <label for="description-work">Descripcion del trabajo</label>
-              <textarea class="textarea" name="description-work" cols="50" rows="5"></textarea>
+              <label for="description-work">Job description</label>
+              <textarea class="textarea" id="description_work" cols="50" rows="5"></textarea>
               
-              <button id="btn-add-work" class="boton-add">Añadir</button>
+              <button id="btn-add-work" class="boton-add" onclick="add_work();">Añadir</button>
               </div>
         
         </div>

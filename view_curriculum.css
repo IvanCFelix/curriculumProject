@@ -63,7 +63,7 @@
   margin: 10px 0px;
   }
 
-  .experience p{
+  .body p{
     margin: 5px;
     color: #e2e2e2;
     font-style: bold;
@@ -130,7 +130,7 @@
 }
 
 .content .line-a{
-  margin: 70px 0px;
+  margin: 30px 0px;
   width: 100%;
 }
 .content a{
@@ -375,9 +375,24 @@
   .container {
     width: 100vw;
     grid-template-columns: 1fr 1fr 1fr;
+    background-position-y: 0%;
   }
   .content{
     padding: 5px;
+  }
+
+  .content h2{
+    margin-top: 25%;
+  }
+  .circle-img{
+    width: 150px;
+    height: 150px;
+    
+  }
+
+  .img-container{
+    top: -8%;
+    left: 13% ;
   }
 }
 
@@ -385,8 +400,24 @@
   .container {
     width: 100vw;
     grid-template-columns: 1fr 1fr 1fr;
+    background-position-y: -10%;
   }
   .content{ 
     padding: 5px;
+
+  }
+
+  .content h2{
+    margin-top: 25%;
+  }
+  .circle-img{
+    width: 150px;
+    height: 150px;
+    
+  }
+
+  .img-container{
+    top: -8%;
+    left: 20% ;
   }
 }

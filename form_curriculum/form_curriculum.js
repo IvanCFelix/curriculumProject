@@ -21,7 +21,6 @@ let arraySoftwares = [{name:"Select Option"},{name:"Add Software"}];
 let arraySchools = [{name:"Select School"},{name:"Add School"}];
 let arrayWorks = [{name:"Select Option"},{name:"Add Work"}];
 
-
 function update_data() {
     obj_User.name = document.getElementById('name-user').value;
     obj_User.profesion = document.getElementById('profesion').value;
@@ -42,13 +41,27 @@ function update_data() {
 
 }
 
+function obtener_imagen(e){
+    e.preventDefault();
+    let reader = new FileReader();
+    let img_container = document.getElementById('img_user');
+    reader.onload = function(e){
+        let filePreview = e.target.result;
+        img_container.src = filePreview;
+        obj_User.img=filePreview;
+    } 
+    reader.readAsDataURL(e.target.files[0]);
 
+}
 
 function cargar_selects() {
+
+    getUsers();
     cargar_software();
     cargar_works();
     cargar_skills();
     cargar_schools();
+
 }
 function cargar_software() {
     var software = arraySoftwares;
@@ -58,7 +71,7 @@ function cargar_software() {
         var option = document.createElement("option");
         option.innerHTML = software[i].name;
         option.value = i;
-        select.appendChild(option);
+        select.appendChild(option); //sele asigna el option como hijo al select
     }
 }
 function cargar_skills() {
@@ -185,6 +198,7 @@ function add_skill() {
     alert("El dato se agrego correctamente");
 }
 
+
 function add_soft() {
     let name = document.getElementById('input-new-soft').value;
     let domain = document.getElementById('range-soft').value;
@@ -221,19 +235,42 @@ function add_school(){
 }
 
 function add_work(){
-    let obj_school = {
-        name: document.getElementById('input-new-school').value,
-        description: document.getElementById('school_description').value,
-        job: document.getElementById('title_school').value,
+    let obj_work = {
+        name: document.getElementById('new_work').value,
+        description: document.getElementById('description_work').value,
+        job: document.getElementById('job_name').value,
     }
-    arraySchools.push(obj_school);
+    arrayWorks.push(obj_work);
     let newOption = document.createElement("option");
-    newOption.innerHTML = arraySchools[arraySchools.length-1].name;
+    newOption.innerHTML = arrayWorks[arrayWorks.length-1].name;
     newOption.value = arraySchools.length-1;
-    selector_schools.appendChild(newOption);  
+    selector_works.appendChild(newOption);  
 
-    document.getElementById('add_school').style.display = "none";
-    console.log(arraySchools);
+    document.getElementById('add_work').style.display = "none";
+    console.log(arrayWorks);
     alert("El dato se agrego correctamente");
+}
+
+
+//Funciones para conectar con el server
+async function getUsers(){
+   /* fetch('http://localhost:3000/api/users/',
+    { method: 'GET',
+      mode: 'no-cors',
+      cache: 'default'
+   })
+   .then(function(response) {
+       console.log(response);
+     return response;
+   })*/
+
+   fetch('http://localhost:3000/api/users/')
+  .then(response => {
+     response.json().then(data=>(console.log(data)));
+  })
+
+  .catch(error => {
+    console.error(error);
+  });
 }
 
