@@ -1,6 +1,20 @@
 const select_skills = document.getElementById("select_skills");
 const selector_schools = document.getElementById('selector_school');
 const selector_works = document.getElementById("selector_works")
+
+const input_name = document.getElementById('name-user');
+const input_profesion = document.getElementById('profesion');
+const input_description = document.getElementById('description-user');
+const input_email = document.getElementById('email-user');
+const input_phone = document.getElementById('phone-user');
+const input_dress = document.getElementById('dress-user');
+const input_birthDate = document.getElementById('birth-date');
+const input_linked = document.getElementById('linked-user');
+const input_git = document.getElementById('git-user');
+const input_twitter = document.getElementById('twitter-user');
+const input_facebook = document.getElementById('fb-user');
+
+
 let obj_User = {
     name: "",
     img: null,
@@ -36,9 +50,6 @@ function update_data() {
         arraySoftwares,
         arrayWorks
     }
-
-    console.log(newObj);
-
 }
 
 function obtener_imagen(e){
@@ -54,15 +65,31 @@ function obtener_imagen(e){
 
 }
 
-function cargar_selects() {
-
-    getUsers();
+async function cargar_selects() {
+   await getUsers();
+   console.log(obj_User)
+    cargar_datos();
     cargar_software();
     cargar_works();
     cargar_skills();
     cargar_schools();
 
 }
+
+function cargar_datos(){
+    input_name.value = obj_User.name;
+    input_profesion.value = obj_User.profesion;
+    input_description.value = obj_User.description;
+    input_birthDate.value = obj_User.birthDate; 
+    input_email.value = obj_User.email;
+    input_phone.value = obj_User.phone;
+    input_dress.value = obj_User.dress;
+    input_linked.value = obj_User.linkedin;
+    input_git.value = obj_User.github;
+    input_twitter = obj_User.twitter;
+    input_facebook = obj_User.facebook;
+}
+
 function cargar_software() {
     var software = arraySoftwares;
     var select = document.getElementById("select_software");
@@ -254,23 +281,8 @@ function add_work(){
 
 //Funciones para conectar con el server
 async function getUsers(){
-   /* fetch('http://localhost:3000/api/users/',
-    { method: 'GET',
-      mode: 'no-cors',
-      cache: 'default'
-   })
-   .then(function(response) {
-       console.log(response);
-     return response;
-   })*/
-
-   fetch('http://localhost:3000/api/users/')
-  .then(response => {
-     response.json().then(data=>(console.log(data)));
-  })
-
-  .catch(error => {
-    console.error(error);
-  });
+   const response = await fetch('http://localhost:3000/api/users/')
+   const data = await response.json();
+    obj_User = data[0];
 }
 
