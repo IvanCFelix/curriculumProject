@@ -15,7 +15,7 @@
     <title>Curriculum</title>
 </head>
 
-<body class="body">
+<body class="body" onload="llenarInfo();">
     <a href="/form_curriculum/form_curriculum.html" class="float-btn">
         <i class="far fa-edit icon-float"></i>
         </a>
@@ -69,11 +69,11 @@
                 <img id="img-user" class="circle-img"
                     src="https://scontent-dfw5-1.xx.fbcdn.net/v/t1.0-9/51236031_2202635393133963_6046388202632118272_o.jpg?_nc_cat=103&ccb=3&_nc_sid=09cbfe&_nc_eui2=AeFxBBomqK6PIeOuV3khsIs8LN8JEYWqgkos3wkRhaqCSkGSTPrcLU7cxmwVgobxE95sNk4fS717eX-bNFFE8pK8&_nc_ohc=xsnXs88lteoAX-RkFIX&_nc_ht=scontent-dfw5-1.xx&oh=09bead1a1278c16878917da060b62ded&oe=606436C8">
             </div>
-            <h2 class="h2-a" id="name-user">Ivan Felix</h2>
-            <h3 class="subtitle">Web Developer</h4>
-            <div class="description-txt">
+            <h2 class="h2-a" id="name-user"></h2>
+            <h3 class="subtitle" id="profesion">Web Developer</h4>
+            <div class="description-txt" >
                 <div>
-                   <p>
+                   <p id="description-user">
                        Lorem ipsum dolor sit amet consectetur, adipisicing elit. Iusto et, similique ea architecto provident alias ducimus asperiores amet aut impedit numquam necessitatibus, veritatis nemo. Aut maxime sit sapiente cumque accusantium.
                    </p>
                 </div>
@@ -81,21 +81,20 @@
             </div>
 
             <p class="p-a">Birth Date:</p>
-            <span class="p-a">30/09/1998</span>
+            <span class="p-a" id="birth-date">30/09/1998</span>
             <p class="p-a">Adress:</p>
-            <span class="p-a">Los Mochis Sinaloa</span>
+            <span class="p-a" id="adress-user">Ejemplo </span>
             <p class="p-a">Phone:</p>
-            <span class="p-a">6681933275</span>
+            <span class="p-a" id="phone-user">6681933275</span>
             <p class="p-a">Email:</p>
-            <span class="p-a">ejemplo@hotmail.com</span>
-            <p class="p-a">Web Site:</p>
-            <span class="p-a">www.ejemplo.com</span>
+            <span class="p-a" id="email-user">ejemplo@hotmail.com</span>
+            
 
             <div class="line-a"></div>
 
             <div class="social-net">
                 <div class="linked-icon">
-                    <a href=""> <i class="fab fa-linkedin "></i>
+                    <a href="" id="linkedin-user"> <i class="fab fa-linkedin "></i>
                     </a>
                 </div>
                 <div class="fa-icon">
@@ -105,7 +104,7 @@
                     <a href=""> <i class="fab fa-twitter-square "></i> </a>
                 </div>
                 <div class="git-icon">
-                    <a href=""><i class="fab fa-github-square "></i></a>
+                    <a href="" id="git-user"><i class="fab fa-github-square "></i></a>
                 </div>
 
 

@@ -13,12 +13,12 @@ const input_linked = document.getElementById('linked-user');
 const input_git = document.getElementById('git-user');
 const input_twitter = document.getElementById('twitter-user');
 const input_facebook = document.getElementById('fb-user');
-
+const img_container = document.getElementById('img_user');
 
 let obj_User = {
     id: null,
     name: "",
-    img: null,
+    imgProfile: null,
     profesion: "",
     description: "",
     email: "",
@@ -55,20 +55,19 @@ async function update_data() {
     let newObj = {
         ...obj_User,
         arraySchools: schools,
-        arraySkill: skills,
-        arraySoft : softwares,
+        arraySkills: skills,
+        arraySofts : softwares,
         arrayWorks: works
     }
 
     console.log(newObj);
 
         if(newObj.id == null){
-            postData(newObj);
-            console.log("Se agrego un usuario");
+         await   postData(newObj);
+            alert("Se agregaron los datos correctamente");
         }else{
-            editData(newObj);
-            console.log("Se edito un usuario");
-
+          await  editData(newObj);
+            alert('Se guardaron los cambios correctamente');
         }
 }
 
@@ -77,8 +76,10 @@ async function postData(obj) {
     fetch('http://localhost:3000/api/users/', {
         method: 'post',
         headers: {
+           'mode': 'no-cors',
           'Accept': 'application/json, text/plain, */*',
-          'Content-Type': 'application/json'
+          'Content-Type': 'application/json',
+
         },
         body: JSON.stringify(obj)
       }).then(res => res.json())
@@ -89,22 +90,23 @@ async function postData(obj) {
     fetch('http://localhost:3000/api/users/'+obj_User.id, {
         method: 'put',
         headers: {
+            'mode': 'no-cors',
           'Accept': 'application/json, text/plain, */*',
           'Content-Type': 'application/json'
         },
         body: JSON.stringify(obj)
       }).then(res => res.json())
         .then(res => console.log(res));
+    
   }
 
 function obtener_imagen(e) {
     e.preventDefault();
     let reader = new FileReader();
-    let img_container = document.getElementById('img_user');
     reader.onload = function (e) {
         let filePreview = e.target.result;
         img_container.src = filePreview;
-        obj_User.img = filePreview;
+        obj_User.imgProfile = filePreview;
     }
     reader.readAsDataURL(e.target.files[0]);
 
@@ -133,10 +135,11 @@ function cargar_datos() {
         input_linked.value = obj_User.linkedin;
         input_git.value = obj_User.github;
         input_twitter.value = obj_User.twitter;
-        input_facebook.value = obj_User.facebook;
+        input_facebook.value = obj_User.facebook;     
+        img_container.setAttribute('src',obj_User.imgProfile);   
     }
 }
-
+ 
 function cargar_software() {
     var software = arraySoftwares;
     var select = document.getElementById("select_software");
