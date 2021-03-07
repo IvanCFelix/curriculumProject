@@ -16,7 +16,7 @@ const input_twitter = document.getElementById('twitter-user');
 const input_facebook = document.getElementById('fb-user');
 const img_container = document.getElementById('img_user');
 
-const ENDPOINT = 'http://localhost:3000/api/'
+const ENDPOINT = 'https://curriculumivanproject.herokuapp.com/api/'
 
 let obj_User = {
     id: null,
@@ -97,7 +97,7 @@ async function update_data() {
 
 
 async function postData(obj) {
-    fetch('http://localhost:3000/api/users/', {
+    fetch(ENDPOINT+'users', {
         method: 'post',
         headers: {
             'mode': 'no-cors',
@@ -111,7 +111,7 @@ async function postData(obj) {
 }
 
 async function editData(obj) {
-    fetch('http://localhost:3000/api/users/' + obj_User.id, {
+    fetch(ENDPOINT+'users/' + obj_User.id, {
         method: 'put',
         headers: {
             'mode': 'no-cors',
@@ -456,7 +456,7 @@ function cancel() {
 
 //Funciones para conectar con el server
 async function getUsers() {
-    const response = await fetch(ENDPOINT+'users/')
+    const response = await fetch(ENDPOINT+'users')
     const data = await response.json();
     if (data[0] != undefined) {
         obj_User = data[0];
@@ -476,7 +476,7 @@ async function getSkills() {
 }
 
 async function getSchools() {
-    const response = await fetch(ENDPOINT+'schools/')
+    const response = await fetch(ENDPOINT+'schools')
     const data = await response.json();
     if (data != undefined) {
         for (let i = 0; i < data.length; i++) {
@@ -487,7 +487,7 @@ async function getSchools() {
 }
 
 async function getWorks() {
-    const response = await fetch(ENDPOINT+'works/')
+    const response = await fetch(ENDPOINT+'works')
     const data = await response.json();
     if (data != undefined) {
         for (let i = 0; i < data.length; i++) {
@@ -498,7 +498,7 @@ async function getWorks() {
 }
 
 async function getSoftware() {
-    const response = await fetch(ENDPOINT+'softwares/')
+    const response = await fetch(ENDPOINT+'softwares')
     const data = await response.json();
     if (data != undefined) {
         for (let i = 0; i < data.length; i++) {
@@ -567,7 +567,7 @@ async function putSchool(obj) {
 
 
 async function postSkill(obj) {
-    fetch(ENDPOINT+'skills/', {
+    fetch(ENDPOINT+'skills', {
         method: 'post',
         headers: {
             'mode': 'no-cors',
@@ -581,7 +581,7 @@ async function postSkill(obj) {
 }
 
 async function postSchool(obj) {
-    fetch(ENDPOINT+'schools/', {
+    fetch(ENDPOINT+'schools', {
         method: 'post',
         headers: {
             'mode': 'no-cors',
@@ -595,7 +595,7 @@ async function postSchool(obj) {
 }
 
 async function postSoftware(obj) {
-    fetch(ENDPOINT+'softwares/', {
+    fetch(ENDPOINT+'softwares', {
         method: 'post',
         headers: {
             'mode': 'no-cors',
@@ -609,7 +609,7 @@ async function postSoftware(obj) {
 }
 
 async function postWorks(obj) {
-    fetch(ENDPOINT+'works/', {
+    fetch(ENDPOINT+'works', {
         method: 'post',
         headers: {
             'mode': 'no-cors',
@@ -628,7 +628,7 @@ async function deleteSchool() {
         let position = selector_schools.value;
     let obj = arraySchools[position];
     console.log(position)
-   await fetch(ENDPOINT+'schools/' + obj.id, {
+   await fetch(ENDPOINT+'schools' + obj.id, {
         method: 'delete',
         headers: {
             'mode': 'no-cors',
@@ -650,7 +650,7 @@ async function deleteSoft() {
         let position = selector_soft.value;
     let obj = arraySoftwares[position];
     console.log(position)
-   await fetch(ENDPOINT+'softwares/' + obj.id, {
+   await fetch(ENDPOINT+'softwares' + obj.id, {
         method: 'delete',
         headers: {
             'mode': 'no-cors',
@@ -672,7 +672,7 @@ async function deleteWork() {
         let position = selector_works.value;
     let obj = arrayWorks[position];
     console.log(position)
-   await fetch(ENDPOINT+'works/' + obj.id, {
+   await fetch(ENDPOINT+'works' + obj.id, {
         method: 'delete',
         headers: {
             'mode': 'no-cors',
@@ -694,7 +694,7 @@ async function deleteSkill() {
         let position = selector_skills.value;
     let obj = arraySkills[position];
     console.log(position)
-   await fetch(ENDPOINT+'skills/' + obj.id, {
+   await fetch(ENDPOINT+'skills' + obj.id, {
         method: 'delete',
         headers: {
             'mode': 'no-cors',

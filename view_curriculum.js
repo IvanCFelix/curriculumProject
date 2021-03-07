@@ -8,7 +8,7 @@ const linked = document.getElementById('linked-user');
 const git = document.getElementById('git-user');
 const twitter = document.getElementById('twitter-user');
 const facebook = document.getElementById('fb-user');
-const ENDPOINT = 'http://localhost:3000/api/'
+const ENDPOINT = 'https://curriculumivanproject.herokuapp.com/api/'
 
 let arraySchools = [];
 let arrayWorks = [];
@@ -35,7 +35,7 @@ let obj_User = {
 
 
 async function getUsers() {
-    const response = await fetch(ENDPOINT + 'users/')
+    const response = await fetch(ENDPOINT + 'users')
     const data = await response.json();
     if (data[0] != undefined) {
         obj_User = data[0];
@@ -46,7 +46,7 @@ async function getUsers() {
 
 
 async function getSchools() {
-    const response = await fetch(ENDPOINT + '/schools/')
+    const response = await fetch(ENDPOINT + 'schools')
     const data = await response.json();
     if (data != undefined) {
         for (let i = 0; i < data.length; i++) {
@@ -57,7 +57,7 @@ async function getSchools() {
 }
 
 async function getSoftware() {
-    const response = await fetch(ENDPOINT + 'softwares/')
+    const response = await fetch(ENDPOINT + 'softwares')
     const data = await response.json();
     if (data != undefined) {
         for (let i = 0; i < data.length; i++) {
@@ -68,7 +68,7 @@ async function getSoftware() {
 }
 
 async function getSkills() {
-    const response = await fetch(ENDPOINT + 'skills/')
+    const response = await fetch(ENDPOINT + 'skills')
     const data = await response.json();
     if (data != undefined) {
         for (let i = 0; i < data.length; i++) {
@@ -79,7 +79,7 @@ async function getSkills() {
 }
 
 async function getWorks() {
-    const response = await fetch(ENDPOINT + 'works/')
+    const response = await fetch(ENDPOINT + 'works')
     const data = await response.json();
     if (data != undefined) {
         for (let i = 0; i < data.length; i++) {
@@ -92,9 +92,7 @@ async function getWorks() {
 
 async function llenarInfo() {
     await getUsers();
-    if (obj_User.id == undefined) {
-        location.href = "http://127.0.0.1:5500/"
-    }
+   
     showSchools();
     showWorks();
     showSoft();
