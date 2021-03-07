@@ -14,6 +14,8 @@ const input_twitter = document.getElementById('twitter-user');
 const input_facebook = document.getElementById('fb-user');
 const img_container = document.getElementById('img_user');
 
+const ENDPOINT = 'http://localhost:3000/api/'
+
 let obj_User = {
     id: null,
     name: "",
@@ -57,11 +59,25 @@ async function update_data() {
             await postSkill(arraySkills[i]);
         }
     }
+    
+    for (let i = 0; i < arraySoftwares.length; i++) {
+        if (arraySoftwares[i].id == 0) {
+            await postSoftware(arraySoftwares[i]);
+        }
+    }
+    
     for (let i = 0; i < arraySchools.length; i++) {
         if (arraySchools[i].id == 0) {
             await postSchool(arraySchools[i]);
         }
     }
+
+    for (let i = 0; i < arrayWorks.length; i++) {
+        if (arrayWorks[i].id == 0) {
+            await postWorks(arrayWorks[i]);
+        }
+    }
+
     if (obj_User.id == null) {
         await postData(obj_User);
         alert("Se agregaron los datos correctamente");
@@ -125,7 +141,6 @@ async function cargar_selects() {
     await getSoftware();
     await getWorks()
     cargar_datos();
-
     cargar_software();
     cargar_works();
     cargar_skills();
@@ -207,7 +222,11 @@ function select_work() {
 
     if (workPosition > 1) {
         document.getElementById('btn-add-software').innerHTML = "Editar"
-        document.getElementById('input-new-soft').value = arrayWorks[workPosition].name;
+        document.getElementById('new-work').value = arrayWorks[workPosition].name;
+        document.getElementById('description-work').value = arrayWorks[workPosition].jobDescription;
+        document.getElementById('job-name').value = arrayWorks[workPosition].job;
+
+
     } else {
         document.getElementById('btn-add-software').innerHTML = "Añadir"
         document.getElementById('input-new-soft').value = "";
@@ -218,11 +237,14 @@ function select_work() {
 function select_soft() {
     let softwarePosition = document.getElementById("select_software").value;
     if (softwarePosition >= 1) {
-        if (arraySoftwares.length == 6 && skillPosition == 1) {
+        if (arraySoftwares.length == 6 && softwarePosition == 1) {
             alert('Solo puedes agregar 4 softwares   \n Consejo: tambien puede editar elementos ya creados');
         } else {
             document.getElementById('add-software').style.display = "block";
         }
+    } else {
+        document.getElementById('add-software').style.display = "none";
+
     }
     if (softwarePosition > 1) {
         document.getElementById('btn-add-software').innerHTML = "Editar"
@@ -297,68 +319,93 @@ function add_skill() {
         arraySkills.push(obj_skill);
         newOption.innerHTML = arraySkills[arraySkills.length - 1].name;
         newOption.setAttribute('id', 0);
-
         console.log(arraySkills);
         select_skills.appendChild(newOption);
-
-
-        document.getElementById('div-skills').style.display = "none";
         alert("El dato se agrego correctamente");
     }
+    document.getElementById('div-skills').style.display = "none";
+
 
 
 }
 
 function add_soft() {
+    let softwarePosition = document.getElementById("select_software").value;
     let name = document.getElementById('input-new-soft').value;
     let domain = document.getElementById('range-soft').value;
     let obj_soft = {
+        id: 0,
         name: name,
         domain: domain
     }
-    let newOption = document.createElement("option");
-    arraySoftwares.push(obj_soft);
-    newOption.innerHTML = arraySoftwares[arraySoftwares.length - 1].name;
-    newOption.value = arraySoftwares.length - 1;
-    select_software.appendChild(newOption);
+    if (arraySoftwares[softwarePosition].id > 0) {
+        obj_soft.id = arraySoftwares[softwarePosition].id;
+        putSoft(obj_soft);
+        alert('Los cambios se reflejaran al guardar');
+    } else {
+        let newOption = document.createElement("option");
+        arraySoftwares.push(obj_soft);
+        newOption.innerHTML = arraySoftwares[arraySoftwares.length - 1].name;
+        newOption.value = arraySoftwares.length - 1;
+        select_software.appendChild(newOption);
+        alert("El dato se agrego correctamente");
+    }
     document.getElementById('add-software').style.display = "none";
-    alert("El dato se agrego correctamente");
+
 }
 
 function add_school() {
+    let schoolPosition = selector_schools.value;
+
     let name = document.getElementById('input-new-school').value;
     let description = document.getElementById('school_description').value;
     let title = document.getElementById('title_school').value;
     let obj_school = {
+        id: 0,
         name: name,
         description: description,
         title: title
     }
-    arraySchools.push(obj_school);
-    let newOption = document.createElement("option");
-    newOption.innerHTML = arraySchools[arraySchools.length - 1].name;
-    newOption.value = arraySchools.length - 1;
-    selector_schools.appendChild(newOption);
+
+    if (arraySchools[schoolPosition].id > 0) {
+        obj_school.id = arraySchools[schoolPosition].id;
+        putSchool(obj_school);
+        alert('Los cambios se reflejaran al guardar');
+    } else {
+        arraySchools.push(obj_school);
+        let newOption = document.createElement("option");
+        newOption.innerHTML = arraySchools[arraySchools.length - 1].name;
+        newOption.value = arraySchools.length - 1;
+        selector_schools.appendChild(newOption);
+        console.log(arraySchools);
+        alert("El dato se agrego correctamente");
+    }
     document.getElementById('add_school').style.display = "none";
-    console.log(arraySchools);
-    alert("El dato se agrego correctamente");
+
+    
 }
 
 function add_work() {
+    let workPosition = selector_works.value;
     let obj_work = {
-        name: document.getElementById('new_work').value,
-        description: document.getElementById('description_work').value,
-        job: document.getElementById('job_name').value,
+        id:0,
+        name: document.getElementById('new-work').value,
+        jobDescription: document.getElementById('description-work').value,
+        job: document.getElementById('job-name').value,
     }
+    if (arrayWorks[workPosition].id > 0) {
+        obj_work.id = arrayWorks[workPosition].id;
+        putWork(obj_work);
+        alert('Los cambios se reflejaran al guardar');
+    } else {
     arrayWorks.push(obj_work);
     let newOption = document.createElement("option");
     newOption.innerHTML = arrayWorks[arrayWorks.length - 1].name;
     newOption.value = arraySchools.length - 1;
     selector_works.appendChild(newOption);
-
-    document.getElementById('add_work').style.display = "none";
-    console.log(arrayWorks);
     alert("El dato se agrego correctamente");
+    }
+    document.getElementById('add_work').style.display = "none";
 }
 
 function cancel() {
@@ -373,7 +420,7 @@ function cancel() {
 
 //Funciones para conectar con el server
 async function getUsers() {
-    const response = await fetch('http://localhost:3000/api/users/')
+    const response = await fetch(ENDPOINT+'users/')
     const data = await response.json();
     if (data[0] != undefined) {
         obj_User = data[0];
@@ -383,7 +430,7 @@ async function getUsers() {
 }
 
 async function getSkills() {
-    const response = await fetch('http://localhost:3000/api/skills/')
+    const response = await fetch(ENDPOINT+'skills/')
     const data = await response.json();
     if (data != undefined) {
         for (let i = 0; i < data.length; i++) {
@@ -393,7 +440,7 @@ async function getSkills() {
 }
 
 async function getSchools() {
-    const response = await fetch('http://localhost:3000/api/schools/')
+    const response = await fetch(ENDPOINT+'schools/')
     const data = await response.json();
     if (data != undefined) {
         for (let i = 0; i < data.length; i++) {
@@ -404,7 +451,7 @@ async function getSchools() {
 }
 
 async function getWorks() {
-    const response = await fetch('http://localhost:3000/api/works/')
+    const response = await fetch(ENDPOINT+'works/')
     const data = await response.json();
     if (data != undefined) {
         for (let i = 0; i < data.length; i++) {
@@ -415,7 +462,7 @@ async function getWorks() {
 }
 
 async function getSoftware() {
-    const response = await fetch('http://localhost:3000/api/softwares/')
+    const response = await fetch(ENDPOINT+'softwares/')
     const data = await response.json();
     if (data != undefined) {
         for (let i = 0; i < data.length; i++) {
@@ -427,7 +474,49 @@ async function getSoftware() {
 
 
 async function putSkill(obj) {
-    fetch('http://localhost:3000/api/skills/' + obj.id, {
+    fetch(ENDPOINT+'skills/' + obj.id, {
+        method: 'put',
+        headers: {
+            'mode': 'no-cors',
+            'Accept': 'application/json, text/plain, */*',
+            'Content-Type': 'application/json',
+
+        },
+        body: JSON.stringify(obj)
+    }).then(res => res.json())
+        .then(res => console.log(res));
+}
+
+async function putSoft(obj) {
+    fetch(ENDPOINT+'softwares/' + obj.id, {
+        method: 'put',
+        headers: {
+            'mode': 'no-cors',
+            'Accept': 'application/json, text/plain, */*',
+            'Content-Type': 'application/json',
+
+        },
+        body: JSON.stringify(obj)
+    }).then(res => res.json())
+        .then(res => console.log(res));
+}
+
+async function putWork(obj) {
+    fetch(ENDPOINT+'works/' + obj.id, {
+        method: 'put',
+        headers: {
+            'mode': 'no-cors',
+            'Accept': 'application/json, text/plain, */*',
+            'Content-Type': 'application/json',
+
+        },
+        body: JSON.stringify(obj)
+    }).then(res => res.json())
+        .then(res => console.log(res));
+}
+
+async function putSchool(obj) {
+    fetch(ENDPOINT+'schools/' + obj.id, {
         method: 'put',
         headers: {
             'mode': 'no-cors',
@@ -442,7 +531,7 @@ async function putSkill(obj) {
 
 
 async function postSkill(obj) {
-    fetch('http://localhost:3000/api/skills/', {
+    fetch(ENDPOINT+'skills/', {
         method: 'post',
         headers: {
             'mode': 'no-cors',
@@ -458,7 +547,36 @@ async function postSkill(obj) {
 
 
 async function postSchool(obj) {
-    fetch('http://localhost:3000/api/skills/', {
+    fetch(ENDPOINT+'schools/', {
+        method: 'post',
+        headers: {
+            'mode': 'no-cors',
+            'Accept': 'application/json, text/plain, */*',
+            'Content-Type': 'application/json',
+
+        },
+        body: JSON.stringify(obj)
+    }).then(res => res.json())
+        .then(res => console.log(res));
+}
+
+
+async function postSoftware(obj) {
+    fetch(ENDPOINT+'softwares/', {
+        method: 'post',
+        headers: {
+            'mode': 'no-cors',
+            'Accept': 'application/json, text/plain, */*',
+            'Content-Type': 'application/json',
+
+        },
+        body: JSON.stringify(obj)
+    }).then(res => res.json())
+        .then(res => console.log(res));
+}
+
+async function postWorks(obj) {
+    fetch(ENDPOINT+'works/', {
         method: 'post',
         headers: {
             'mode': 'no-cors',
