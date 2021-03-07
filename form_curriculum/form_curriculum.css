@@ -29,7 +29,7 @@
     background-color: rgb(255, 255, 255);
   }
 
-  .boton-del{
+  .boton-eliminar{
     background-color: rgb(255, 255, 255);
     padding: 0.46em 1.6em;
     border: 0.1em solid #ff0000;
@@ -42,7 +42,6 @@
     border-radius: 5px;
     width: 100%;
     margin-top: 20px;
-    display: none;
   }
  
 #data-list{

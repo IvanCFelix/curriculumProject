@@ -77,7 +77,6 @@ async function showSchools(){
        const h4 = document.createElement('h4');
        const p = document.createElement('p');
        const span = document.createElement('span');
-
        h4.innerText = item.name;
        p.innerText = item.title;
        span.innerText = item.description;
@@ -86,8 +85,6 @@ async function showSchools(){
         div.appendChild(p);
         div.appendChild(span);
         container.appendChild(div);
-
-
     });
 
 
