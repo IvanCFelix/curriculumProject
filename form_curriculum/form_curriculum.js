@@ -1,6 +1,8 @@
-const select_skills = document.getElementById("select_skills");
+const selector_skills = document.getElementById("select_skills");
 const selector_schools = document.getElementById('selector_school');
 const selector_works = document.getElementById("selector_works")
+const selector_soft = document.getElementById("select_software")
+
 const input_name = document.getElementById('name-user');
 const input_profesion = document.getElementById('profesion');
 const input_description = document.getElementById('description-user');
@@ -188,7 +190,7 @@ function cargar_skills() {
         option.innerHTML = skill[i].name;
         option.value = i;
         option.setAttribute('id', skill.id);
-        select_skills.appendChild(option);
+        selector_skills.appendChild(option);
     }
 }
 function cargar_works() {
@@ -218,22 +220,35 @@ function select_work() {
     }
     else {
         document.getElementById('add_work').style.display = "block";
+        document.getElementById('delete-work').style.display = "block"
+
     }
 
     if (workPosition > 1) {
-        document.getElementById('btn-add-software').innerHTML = "Editar"
+        document.getElementById('btn-add-work').innerHTML = "Editar"
         document.getElementById('new-work').value = arrayWorks[workPosition].name;
         document.getElementById('description-work').value = arrayWorks[workPosition].jobDescription;
         document.getElementById('job-name').value = arrayWorks[workPosition].job;
-
-
     } else {
         document.getElementById('btn-add-software').innerHTML = "Añadir"
+        document.getElementById('delete-work').style.display = "none"
+
         document.getElementById('input-new-soft').value = "";
     }
 
 }
 
+function clearFormWorks(){
+    document.getElementById('new-work').value = "";
+        document.getElementById('description-work').value = "";
+        document.getElementById('job-name').value = "";
+}
+
+function clearFormSchools(){
+    document.getElementById('input-new-school').value = "";
+        document.getElementById('school_description').value = "";
+        document.getElementById('title_school').value = "";
+}
 function select_soft() {
     let softwarePosition = document.getElementById("select_software").value;
     if (softwarePosition >= 1) {
@@ -241,15 +256,18 @@ function select_soft() {
             alert('Solo puedes agregar 4 softwares   \n Consejo: tambien puede editar elementos ya creados');
         } else {
             document.getElementById('add-software').style.display = "block";
+            document.getElementById('btn-del-soft').style.display = "block";
+
         }
     } else {
         document.getElementById('add-software').style.display = "none";
-
     }
     if (softwarePosition > 1) {
         document.getElementById('btn-add-software').innerHTML = "Editar"
         document.getElementById('input-new-soft').value = arraySoftwares[softwarePosition].name;
     } else {
+        document.getElementById('btn-del-soft').style.display = "none";
+
         document.getElementById('btn-add-software').innerHTML = "Añadir"
         document.getElementById('input-new-soft').value = "";
     }
@@ -286,6 +304,7 @@ function select_school() {
     }
     else {
         document.getElementById('add_school').style.display = "block";
+        document.getElementById('delete-school').style.display = "block";
 
     }
     if (schoolPosition > 1) {
@@ -296,6 +315,11 @@ function select_school() {
         document.getElementById('title_school').value = arraySchools[schoolPosition].title;
     } else {
         document.getElementById('btn-add-school').innerHTML = "Añadir"
+        document.getElementById('input-new-school').value = "";
+        document.getElementById('school_description').value = "";
+        document.getElementById('title_school').value = "";
+        document.getElementById('delete-school').style.display = "none";
+
     }
 }
 
@@ -305,38 +329,47 @@ function add_skill() {
 
     let name = document.getElementById('input-skill').value;
     let domain = document.getElementById('range-skill').value;
+    if(name.value = undefined){
+        alert("dato vacio")
+    }
     let obj_skill = {
         id: 0,
         name: name,
         domain: domain
     }
-    if (arraySkills[skillPosition].id > 0) {
-        obj_skill.id = arraySkills[skillPosition].id;
-        putSkill(obj_skill);
-        alert('Los cambios se reflejaran al guardar');
-    } else {
-        let newOption = document.createElement("option");
-        arraySkills.push(obj_skill);
-        newOption.innerHTML = arraySkills[arraySkills.length - 1].name;
-        newOption.setAttribute('id', 0);
-        console.log(arraySkills);
-        select_skills.appendChild(newOption);
-        alert("El dato se agrego correctamente");
+        if (arraySkills[skillPosition].id > 0) {
+            obj_skill.id = arraySkills[skillPosition].id;
+            putSkill(obj_skill);
+            alert('Los cambios se reflejaran al guardar');
+        } else {
+            let newOption = document.createElement("option");
+            arraySkills.push(obj_skill);
+            newOption.innerHTML = arraySkills[arraySkills.length - 1].name;
+            newOption.setAttribute('id', 0);
+            console.log(arraySkills);
+            selector_skills.appendChild(newOption);
+            alert("El dato se agrego correctamente");
+        }
+        document.getElementById('div-skills').style.display = "none";
+        document.getElementById('input-skill').value = "";
+        selector_skills.selectedIndex ="0";
+
     }
-    document.getElementById('div-skills').style.display = "none";
+    
 
-
-
-}
 
 function add_soft() {
     let softwarePosition = document.getElementById("select_software").value;
     let name = document.getElementById('input-new-soft').value;
     let domain = document.getElementById('range-soft').value;
+    
     let obj_soft = {
         id: 0,
         name: name,
         domain: domain
+    }
+    if(name.value ==""){
+        alert('Faltan datos por llenar')
     }
     if (arraySoftwares[softwarePosition].id > 0) {
         obj_soft.id = arraySoftwares[softwarePosition].id;
@@ -351,7 +384,8 @@ function add_soft() {
         alert("El dato se agrego correctamente");
     }
     document.getElementById('add-software').style.display = "none";
-
+    document.getElementById('input-new-soft').value = "";
+    select_software.selectedIndex ="0";
 }
 
 function add_school() {
@@ -381,7 +415,7 @@ function add_school() {
         alert("El dato se agrego correctamente");
     }
     document.getElementById('add_school').style.display = "none";
-
+    selector_schools.selectedIndex ="0"
     
 }
 
@@ -405,7 +439,9 @@ function add_work() {
     selector_works.appendChild(newOption);
     alert("El dato se agrego correctamente");
     }
+    clearFormWorks();
     document.getElementById('add_work').style.display = "none";
+    selector_works.selectedIndex = "0";
 }
 
 function cancel() {
@@ -544,8 +580,6 @@ async function postSkill(obj) {
         .then(res => console.log(res));
 }
 
-
-
 async function postSchool(obj) {
     fetch(ENDPOINT+'schools/', {
         method: 'post',
@@ -559,7 +593,6 @@ async function postSchool(obj) {
     }).then(res => res.json())
         .then(res => console.log(res));
 }
-
 
 async function postSoftware(obj) {
     fetch(ENDPOINT+'softwares/', {
@@ -587,4 +620,92 @@ async function postWorks(obj) {
         body: JSON.stringify(obj)
     }).then(res => res.json())
         .then(res => console.log(res));
+}
+
+async function deleteSchool() {
+    var opcion = confirm("¿Desea eliminar este dato?");
+    if (opcion == true) {
+        let position = selector_schools.value;
+    let obj = arraySchools[position];
+    console.log(position)
+   await fetch(ENDPOINT+'schools/' + obj.id, {
+        method: 'delete',
+        headers: {
+            'mode': 'no-cors',
+            'Accept': 'application/json, text/plain, */*',
+            'Content-Type': 'application/json',
+
+        }
+    }).then(res => res.json())
+        .then(res => console.log(res));
+    } else {
+    }
+
+    location.reload();
+}
+
+async function deleteSoft() {
+    var opcion = confirm("¿Desea eliminar este dato?");
+    if (opcion == true) {
+        let position = selector_soft.value;
+    let obj = arraySoftwares[position];
+    console.log(position)
+   await fetch(ENDPOINT+'softwares/' + obj.id, {
+        method: 'delete',
+        headers: {
+            'mode': 'no-cors',
+            'Accept': 'application/json, text/plain, */*',
+            'Content-Type': 'application/json',
+
+        }
+    }).then(res => res.json())
+        .then(res => console.log(res));
+    } else {
+    }
+
+    location.reload();
+}
+
+async function deleteWork() {
+    var opcion = confirm("¿Desea eliminar este dato?");
+    if (opcion == true) {
+        let position = selector_works.value;
+    let obj = arrayWorks[position];
+    console.log(position)
+   await fetch(ENDPOINT+'works/' + obj.id, {
+        method: 'delete',
+        headers: {
+            'mode': 'no-cors',
+            'Accept': 'application/json, text/plain, */*',
+            'Content-Type': 'application/json',
+
+        }
+    }).then(res => res.json())
+        .then(res => console.log(res));
+    } else {
+    }
+
+    location.reload();
+}
+
+async function deleteSkill() {
+    var opcion = confirm("¿Desea eliminar este dato?");
+    if (opcion == true) {
+        let position = selector_skills.value;
+    let obj = arraySkills[position];
+    console.log(position)
+   await fetch(ENDPOINT+'skills/' + obj.id, {
+        method: 'delete',
+        headers: {
+            'mode': 'no-cors',
+            'Accept': 'application/json, text/plain, */*',
+            'Content-Type': 'application/json',
+
+        }
+    }).then(res => res.json())
+        .then(res => console.log(res));
+    } else {
+    }
+
+    location.reload();
 }

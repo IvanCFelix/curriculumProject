@@ -8,14 +8,15 @@
   grid-template-columns: 1fr 1fr 1fr;
   background-image: url('/Assets/wallpaper-blur.png');
   background-size: 100%;
-  background-position-y: -90%;
+  background-position-y: -130%;
+  background-position-x: center;
   background-repeat: no-repeat;
-  background-attachment: scroll;
+  background-attachment: local  ;
 }
 
 .experience {
   grid-area: experience;
-  padding: 300px 10px;
+  padding: 100% 20px;
   text-align: right;
 }
 
@@ -24,8 +25,8 @@
 .content {
   grid-area: cont;
   padding: 40px;
-  padding-top: 60px;
-  margin-top: 180px;
+  padding-top: 10%;
+  margin-top: 50%;
   align-items: center;
   text-align: center;
   background-color: rgb(34, 40, 56);
@@ -34,7 +35,8 @@
 
 .education {
   grid-area: education;
-  padding: 300px 10px;
+  
+  padding: 100% 20px;
   text-align: left;
   color: #ffffff;
 }
@@ -65,11 +67,11 @@
 
   .body p{
     margin: 5px;
-    color: #e2e2e2;
-    font-style: bold;
+    color: #b3b3b3;
+    font-weight: bold;
   }
   
-  .experience span{
+  .body span{
     color: #e2e2e2;
   }
   
@@ -260,8 +262,7 @@
 .line-a {
   border-bottom: 2px  dotted;
   color: white;
-  width: 90%;
-  margin: 0 auto;
+  
 }
 
 .li-a {
@@ -336,6 +337,49 @@
   grid-template-areas:
   "area1   area2"
   "area3  area4";
+}
+
+.soft-list{
+ width: 100%;
+ height: auto;
+}
+
+.soft-list-area1{
+  padding-top: 10%;
+  display: flex;
+  justify-content: space-between;
+  
+}
+
+
+.soft-list-area1 p{
+  font-size: 17px;
+  padding-top: 5px;
+}
+
+.domain-view{
+  width: 50%;
+  height: auto;
+  padding: 3px 0;
+}
+
+.skill-list{
+width: auto;
+height: auto;
+
+}
+.skill-list-area1{
+  padding-top: 10%;
+ display: flex;
+ justify-content: space-between;
+}
+
+
+.skill-list-area1 p{
+  font-size: 17px;
+  padding-top: 5px;
+  margin-left: 10px;
+  text-align: center;
 }
 
 .fa-icon {
@@ -415,5 +459,54 @@
   .img-container{
     top: -8%;
     left: 20% ;
+  }
+}
+
+@media (min-width: 981px) and (max-width: 1200px) {
+  .container {
+    width: 100vw;
+    grid-template-columns: 1fr 1fr 1fr;
+    background-position-y: -100%;
+  }
+  .content{ 
+    padding: 5px;
+
+  }
+
+  .content h2{
+    margin-top: 25%;
+  }
+  .circle-img{
+    width: 150px;
+    height: 150px;
+    
+  }
+
+  .img-container{
+    top: -8%;
+    left: 30% ;
+  }
+}
+
+
+@media (max-width: 981px) {
+  .container {
+    width: 100vw;
+    grid-template-columns: 1fr 1fr 1fr;
+    background-position-y: -70%;
+  }
+  .content{ 
+    padding: 5px;
+
+  }
+
+  .content h2{
+    margin-top: 25%;
+  }
+ 
+
+  .img-container{
+    top: -12%;
+   
   }
 }

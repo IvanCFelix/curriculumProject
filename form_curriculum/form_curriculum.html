@@ -17,7 +17,7 @@
     <div class="sidebar">
       <div class="img-container">
         <div class="circle-img">
-          <img id="img_user" class="img-user" >
+          <img id="img_user" class="img-user" src="../Assets/icon_add_image.png">
           <label for="pick-img-user" class="img-picker"></label>
           <input id="pick-img-user" type="file" style="display: none;" onchange="obtener_imagen(event);"/>
           <img  src="../Assets/icon_add_image.png" class="add-img" />
@@ -67,7 +67,7 @@
       </button>
 
       <button  class="boton-eliminar" onclick="cancel();">
-        Cancelar
+        Salir
       </button>
     </div>
     <div class="content">
@@ -77,13 +77,16 @@
             <select class="picker-aptitudes" id="selector_works" onchange="select_work();">
             </select>
             <div class="add-work" id="add_work">
-              <label for="new-work">Name </label>
+              <label for="new-work">Company name </label>
               <input class="input-a" id="new-work" placeholder="Work.." />
               <label for="job_name">Job</label>
               <input  type="text" class="input-a" id="job-name" placeholder="Work.." />
-              <label for="description-work">Job description</label>
+              <label for="description-work">Description</label>
               <textarea class="textarea" id="description-work" cols="50" rows="5"></textarea>
               <button id="btn-add-work" class="boton-add" onclick="add_work();">Añadir</button>
+              <button  class="boton-eliminar" id="delete-work" onclick="deleteWork();">
+                Eliminar
+              </button>
               </div>
         
         </div>
@@ -97,12 +100,16 @@
               </select>
               <div id="add_school" class="add-school">
                 <label for="new-school">Nombre de la Escuela</label>
-                <input class="input-a" id="input-new-school" placeholder="School name.." />
+                <input class="input-a" id="input-new-school" placeholder="School name.."/>
                 <label for="school_description">Description school</label>
-                <input  type="text" class="input-a" id="school_description" placeholder="Description.."/>
-                <label for="title_school">Title obteined  :</label>
+                <textarea class="textarea" id="school_description" cols="50" rows="5" placeholder="Description.."></textarea>
+
+                <label for="title_school">Career or Speciality</label>
                 <input  type="text" class="input-a" id="title_school"  placeholder="Title.."/>
                 <button id="btn-add-school" class="boton-add" onclick="add_school();">Añadir</button>
+                <button  class="boton-eliminar" id="delete-school" onclick="deleteSchool();">
+                  Eliminar
+                </button>
               </div>
              
         </div>
@@ -126,6 +133,9 @@
             </datalist>
           </div>
           <button id="btn-add-software" class="boton-add" onclick="add_soft();">Añadir</button>
+          <button  class="boton-eliminar" id="btn-del-soft" onclick="deleteSoft();">
+            Eliminar
+          </button>
         </div>
         <div class="line-b"></div>
 
@@ -146,6 +156,7 @@
             
             </datalist>
           <button id="btn-add-skill" class="boton-add" onclick="add_skill()">Añadir</button>
+         
         </div>
     </div>
   </div>
