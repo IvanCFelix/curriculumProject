@@ -9,6 +9,9 @@ const git = document.getElementById('git-user');
 const twitter = document.getElementById('twitter-user');
 const facebook = document.getElementById('fb-user');
 
+let arraySchools = [];
+
+
 let obj_User = {
     id: null,
     name: "",
@@ -22,8 +25,11 @@ let obj_User = {
     facebook: "",
     twitter: "",
     linkedin: "",
-    github: ""
+    github: "",
+    imgProfile:""
 }
+
+
 
 async function getUsers() {
     const response = await fetch('http://localhost:3000/api/users/')
@@ -35,8 +41,21 @@ async function getUsers() {
 
 }
 
+
+async function getSchools() {
+    const response = await fetch('http://localhost:3000/api/schools/')
+    const data = await response.json();
+    if (data!= undefined) {
+        for (let i = 0; i < data.length; i++) {
+            arraySchools.push(data[i]);
+        }
+    }
+    console.log(arraySchools);
+}
+
 async function llenarInfo(){
 await getUsers();   
+showSchools();
 document.getElementById("name-user").innerText = obj_User.name;
 document.getElementById("profesion").innerText = obj_User.profesion;
 document.getElementById("email-user").innerText = obj_User.email;
@@ -47,9 +66,32 @@ document.getElementById('git-user').setAttribute('href', "https://www.github.com
 document.getElementById('linkedin-user').setAttribute('href', "https://www.linkedin.com/"+obj_User.linkedin);
 document.getElementById('fb-user').setAttribute('href', "https://www.facebook.com/"+obj_User.facebook);
 document.getElementById('twitter-user').setAttribute('href', "https://www.github.com/"+obj_User.twitter);
-document.getElementById('img-user')
+document.getElementById('img-user').setAttribute('src',obj_User.imgProfile)
 }
 
+
+async function showSchools(){
+    await getSchools();
+    arraySchools.map((item)=>{
+       const div = document.createElement('div');
+       const h4 = document.createElement('h4');
+       const p = document.createElement('p');
+       const span = document.createElement('span');
+
+       h4.innerText = item.name;
+       p.innerText = item.title;
+       span.innerText = item.description;
+     const container = document.getElementById('school-list');
+        div.appendChild(h4);
+        div.appendChild(p);
+        div.appendChild(span);
+        container.appendChild(div);
+
+
+    });
+
+
+}   
 
 
 

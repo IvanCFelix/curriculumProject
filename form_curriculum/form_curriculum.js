@@ -13,7 +13,7 @@ const input_linked = document.getElementById('linked-user');
 const input_git = document.getElementById('git-user');
 const input_twitter = document.getElementById('twitter-user');
 const input_facebook = document.getElementById('fb-user');
-const img_container = document.getElementById('img_user');
+const img_container = document.getElementById('img-user');
 
 let obj_User = {
     id: null,
@@ -30,10 +30,10 @@ let obj_User = {
     linkedin: "",
     github: ""
 }
-let arraySkills = [{ name: "Select Option" }, { name: "Add Skill" },{name:"photoshop",domain: 3 }];
+let arraySkills = [{id:-2, name: "Select Option" }, {id:-1, name: "Add Skill" }];
 
 let arraySoftwares = [{ name: "Select Option" }, { name: "Add Software" }];
-let arraySchools = [{ name: "Select School" }, { name: "Add School" }];
+let arraySchools = [{name: "Select School" }, { name: "Add School" }];
 let arrayWorks = [{ name: "Select Option" }, { name: "Add Work" }];
 
 async function update_data() {
@@ -48,10 +48,10 @@ async function update_data() {
     obj_User.github = input_git.value;
     obj_User.twitter = input_twitter.value ;
     obj_User.facebook = input_facebook.value;
-    let skills = arraySkills.splice(0,2).stringify;
-    let softwares = arraySoftwares.splice(0,2).stringify; 
-    let schools = arraySchools.splice(0,2).stringify;
-    let works = arrayWorks.splice(0,2).stringify;
+    let skills = arraySkills.splice(0,2);
+    let softwares = arraySoftwares.splice(0,2);
+    let schools = arraySchools.splice(0,2);
+    let works = arrayWorks.splice(0,2);
     let newObj = {
         ...obj_User,
         arraySchools: schools,
@@ -62,13 +62,13 @@ async function update_data() {
 
     console.log(newObj);
 
-        if(newObj.id == null){
+      if(newObj.id == null){
          await   postData(newObj);
             alert("Se agregaron los datos correctamente");
         }else{
           await  editData(newObj);
             alert('Se guardaron los cambios correctamente');
-        }
+        }   
 }
 
 
@@ -114,29 +114,29 @@ function obtener_imagen(e) {
 
 async function cargar_selects() {
     await getUsers();
-    console.log(obj_User)
     cargar_datos();
+    await getSkills();
     cargar_software();
     cargar_works();
     cargar_skills();
+    await getSchools();
     cargar_schools();
 
 }
 
 function cargar_datos() {
     if (obj_User.id != null) {
-        input_name.value = obj_User.name;
-        input_profesion.value = obj_User.profesion;
-        input_description.value = obj_User.description;
-        input_birthDate.value = obj_User.birthDate;
-        input_email.value = obj_User.email;
-        input_phone.value = obj_User.phone;
-        input_dress.value = obj_User.dress;
-        input_linked.value = obj_User.linkedin;
-        input_git.value = obj_User.github;
-        input_twitter.value = obj_User.twitter;
-        input_facebook.value = obj_User.facebook;     
-        img_container.setAttribute('src',obj_User.imgProfile);   
+        try {
+            input_name.value = obj_User.name;
+            input_profesion.value = obj_User.profesion;
+            input_description.value = obj_User.description;
+            input_birthDate.value = obj_User.birthDate;
+            input_facebook.value = obj_User.facebook;     
+            img_container.setAttribute('src',obj_User.imgProfile);  
+        } catch (error) {
+            
+        }
+     
     }
 }
  
@@ -198,7 +198,6 @@ function select_work() {
 
 }
 
-
 function select_soft() {
     let softwarePosition = document.getElementById("select_software").value;
     if (softwarePosition == 0) {
@@ -249,14 +248,11 @@ function select_school() {
         document.getElementById('btn-add-school').innerHTML = "Editar"
         document.getElementById('input-new-school').value = arraySchools[schoolPosition].name;
         document.getElementById('school_description').value = arraySchools[schoolPosition].description;
-        document.getElementById('input-new-schol').value = arraySchools[schoolPosition].tittle;
-
+        document.getElementById('title_school').value = arraySchools[schoolPosition].title;
     } else {
         document.getElementById('btn-add-school').innerHTML = "Añadir"
     }
 }
-
-
 
 function add_skill() {
     let name = document.getElementById('input-skill').value;
@@ -274,7 +270,6 @@ function add_skill() {
     document.getElementById('div-skills').style.display = "none";
     alert("El dato se agrego correctamente");
 }
-
 
 function add_soft() {
     let name = document.getElementById('input-new-soft').value;
@@ -338,3 +333,26 @@ async function getUsers() {
     }
 }
 
+async function getSkills() {
+    const response = await fetch('http://localhost:3000/api/skills/')
+    const data = await response.json();
+    if (data!= undefined) {
+        for (let i = 0; i < data.length; i++) {
+            arraySkills.push(data[i]);
+        }
+    }
+    console.log(arraySkills);
+}
+
+
+
+async function getSchools() {
+    const response = await fetch('http://localhost:3000/api/schools/')
+    const data = await response.json();
+    if (data!= undefined) {
+        for (let i = 0; i < data.length; i++) {
+            arraySchools.push(data[i]);
+        }
+    }
+    console.log(arraySchools);
+}
